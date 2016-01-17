@@ -1,4 +1,4 @@
-class BootstrapHelpers::Box
+class BootstrapBuilders::Box
   def initialize(args)
     @title = args.fetch(:title)
     @width = args.fetch(:width)

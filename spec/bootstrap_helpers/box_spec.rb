@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe BootstrapHelpers::Box do
+describe BootstrapBuilders::Box do
   include WorkingHelpers
 
   it "generates a box by using panels" do

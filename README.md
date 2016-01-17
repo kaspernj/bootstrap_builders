@@ -1,16 +1,16 @@
-# bootstrap_helpers
+# bootstrap_builders
 
 ## Install
 
 Add to your Gemfile and bundle:
 ```ruby
-gem "bootstrap_helpers"
+gem "bootstrap_builders"
 ```
 
 Then add to your `ApplicationHelper` module:
 ```ruby
 module ApplicationHelper
-  include BootstrapHelpers::Helpers
+  include BootstrapBuilders::Helpers
 end
 ```
 
@@ -29,7 +29,7 @@ end
     %tr
       %td= "Test"
 
-## Contributing to bootstrap_helpers
+## Contributing to bootstrap_builders
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.

@@ -12,11 +12,11 @@ module Helpers
       args = {}
     end
 
-    BootstrapHelpers::Box.new(args.merge(title: title, width: width, right: right, block: blk)).html
+    BootstrapBuilders::Box.new(args.merge(title: title, width: width, right: right, block: blk)).html
   end
 
   def bs_edit_button(args)
-    BootstrapHelpers::Button.new(args.merge(title: t("edit"), icon: "wrench", context: self)).html
+    BootstrapBuilders::Button.new(args.merge(title: t("edit"), icon: "wrench", context: self)).html
   end
 
   def bs_destroy_button(args)
@@ -26,14 +26,14 @@ module Helpers
     args[:data] ||= {}
     args[:data][:confirm] ||= t("are_you_sure")
 
-    BootstrapHelpers::Button.new(args.merge(title: t("delete"), icon: "remove", context: self, method: :delete)).html
+    BootstrapBuilders::Button.new(args.merge(title: t("delete"), icon: "remove", context: self, method: :delete)).html
   end
 
   def bs_new_button(args)
-    BootstrapHelpers::Button.new(args.merge(title: t("add_new"), icon: "pencil", context: self)).html
+    BootstrapBuilders::Button.new(args.merge(title: t("add_new"), icon: "pencil", context: self)).html
   end
 
   def bs_show_button(args)
-    BootstrapHelpers::Button.new(args.merge(title: t("show"), icon: "zoom-in", context: self)).html
+    BootstrapBuilders::Button.new(args.merge(title: t("show"), icon: "zoom-in", context: self)).html
   end
 end

@@ -14,8 +14,8 @@ require "rake"
 require "jeweler"
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
-  gem.name = "bootstrap_helpers"
-  gem.homepage = "http://github.com/kaspernj/bootstrap_helpers"
+  gem.name = "bootstrap_builders"
+  gem.homepage = "http://github.com/kaspernj/bootstrap_builders"
   gem.license = "MIT"
   gem.summary = %(A library to generate Bootstrap HTML for Rails.)
   gem.description = %(A library to generate Bootstrap HTML for Rails.)
@@ -44,7 +44,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?("VERSION") ? File.read("VERSION") : ""
 
   rdoc.rdoc_dir = "rdoc"
-  rdoc.title = "bootstrap_helpers #{version}"
+  rdoc.title = "bootstrap_builders #{version}"
   rdoc.rdoc_files.include("README*")
   rdoc.rdoc_files.include("lib/**/*.rb")
 end

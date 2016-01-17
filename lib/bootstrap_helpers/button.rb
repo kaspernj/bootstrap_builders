@@ -1,4 +1,4 @@
-class BootstrapHelpers::Button
+class BootstrapBuilders::Button
   def initialize(args)
     @title = args.fetch(:title)
     @mini = args[:mini]

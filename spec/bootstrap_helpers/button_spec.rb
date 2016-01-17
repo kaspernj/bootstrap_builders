@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe BootstrapHelpers::Button do
+describe BootstrapBuilders::Button do
   include WorkingHelpers
 
   it "generates an edit button" do
