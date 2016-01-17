@@ -9,19 +9,25 @@ class BootstrapBuilders::Button
     @icon = args.fetch(:icon)
   end
 
-  def html
-    classes = ["btn", "btn-default"]
-    classes << "btn-xs" if @mini
+  def classes
+    unless @classes
+      @classes = ["btn", "btn-default"]
+      @classes << "btn-xs" if @mini
 
-    if @class.is_a?(String)
-      classes += @class.split(/\s+/)
-    elsif @class.is_a?(Array)
-      classes += @class
+      if @class.is_a?(String)
+        @classes += @class.split(/\s+/)
+      elsif @class.is_a?(Array)
+        @classes += @class
+      end
     end
 
+    @classes
+  end
+
+  def html
     @context.link_to @url, class: classes, data: @args[:data], method: @args[:method], remote: @args[:remote] do
       html = ""
-      html << @context.content_tag(:i, class: ["fa", "fa-#{@icon}"])
+      html << @context.content_tag(:i, nil, class: ["fa", "fa-#{@icon}"])
       html << " #{@title}"
       html.html_safe
     end

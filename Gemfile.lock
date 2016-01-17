@@ -5,6 +5,13 @@ GIT
     best_practice_project (0.0.8)
       auto_autoloader
 
+GIT
+  remote: git://github.com/kaspernj/html_gen.git
+  revision: ade5deaf5bbba143610c3ada0e52f93f60808e1d
+  specs:
+    html_gen (0.0.6)
+      string-cases
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -28,8 +35,6 @@ GEM
       oauth2
     hashie (3.4.3)
     highline (1.7.8)
-    html_gen (0.0.6)
-      string-cases
     jeweler (2.0.1)
       builder
       bundler (>= 1.0)
@@ -90,7 +95,7 @@ DEPENDENCIES
   auto_autoloader (>= 0.0.4)
   best_practice_project!
   bundler (~> 1.0)
-  html_gen (>= 0.0.6)
+  html_gen!
   jeweler (~> 2.0.1)
   rdoc (~> 3.12)
   rspec (~> 3.4.0)

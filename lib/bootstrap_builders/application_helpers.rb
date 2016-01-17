@@ -1,4 +1,4 @@
-module Helpers
+module ApplicationHelpers
   def bs_box(*opts, &blk)
     title = opts.shift unless opts.first.is_a?(Hash)
     width = opts.shift unless opts.first.is_a?(Hash)
@@ -12,7 +12,7 @@ module Helpers
       args = {}
     end
 
-    BootstrapBuilders::Box.new(args.merge(title: title, width: width, right: right, block: blk)).html
+    BootstrapBuilders::Box.new(args.merge(title: title, width: width, right: right, block: blk, context: self)).html
   end
 
   def bs_edit_button(args)
@@ -20,13 +20,12 @@ module Helpers
   end
 
   def bs_destroy_button(args)
-    args[:class] ||= []
-    args[:class] << "btn-danger"
-
     args[:data] ||= {}
     args[:data][:confirm] ||= t("are_you_sure")
 
-    BootstrapBuilders::Button.new(args.merge(title: t("delete"), icon: "remove", context: self, method: :delete)).html
+    button = BootstrapBuilders::Button.new(args.merge(title: t("delete"), icon: "remove", context: self, method: :delete))
+    button.classes << "btn-danger"
+    button.html
   end
 
   def bs_new_button(args)
