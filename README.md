@@ -1,6 +1,33 @@
 # bootstrap_helpers
 
-Description goes here.
+## Install
+
+Add to your Gemfile and bundle:
+```ruby
+gem "bootstrap_helpers"
+```
+
+Then add to your `ApplicationHelper` module:
+```ruby
+module ApplicationHelper
+  include BootstrapHelpers::Helpers
+end
+```
+
+## Usage
+
+### Box
+```haml
+= box "Title of box", right: button_content do
+  Content of box
+```
+
+### Box with a table
+```haml
+= box "Title of box", table: true do
+  %tbody
+    %tr
+      %td= "Test"
 
 ## Contributing to bootstrap_helpers
 
