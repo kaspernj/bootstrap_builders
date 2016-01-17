@@ -49,7 +49,15 @@ private
   end
 
   def can?
-    return true if !@args[:can] || !@args[:can_type]
-    @context.can? @args.fetch(:can_type), @args.fetch(:can)
+    return true if !can_object || !@args[:can_type]
+    @context.can? @args.fetch(:can_type), can_object
+  end
+
+  def can_object
+    if @args[:can]
+      @args[:can]
+    elsif @args[:url].is_a?(Array) && @args[:url].last.is_a?(ActiveRecord::Base)
+      @args[:url].last
+    end
   end
 end
