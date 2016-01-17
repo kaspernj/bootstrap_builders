@@ -7,6 +7,7 @@ class BootstrapBuilders::Button
     @args = args
     @context = args.fetch(:context)
     @icon = args.fetch(:icon)
+    can = args[:can]
   end
 
   def classes
@@ -25,6 +26,8 @@ class BootstrapBuilders::Button
   end
 
   def html
+    return unless can?
+
     @context.link_to @url, class: classes, data: @args[:data], method: @args[:method], remote: @args[:remote] do
       html = ""
       html << @context.content_tag(:i, nil, class: ["fa", "fa-#{@icon}"])
@@ -43,5 +46,10 @@ private
     else
       return nil
     end
+  end
+
+  def can?
+    return true if !@args[:can] || !@args[:can_type]
+    @context.can? @args.fetch(:can_type), @args.fetch(:can)
   end
 end
