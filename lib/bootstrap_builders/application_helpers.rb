@@ -35,4 +35,8 @@ module ApplicationHelpers
   def bs_show_button(args)
     BootstrapBuilders::Button.new(args.merge(title: t("show"), icon: "zoom-in", context: self, can_type: :show)).html
   end
+
+  def bs_table(&blk)
+    content_for(:table, class: ["table", "table-striped", "table-hover"], &blk)
+  end
 end

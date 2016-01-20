@@ -2,5 +2,9 @@ require "auto_autoloader"
 require "html_gen"
 
 class BootstrapBuilders
-  AutoAutoloader.autoload_sub_classes(self, __FILE__)
+  path = "#{File.dirname(__FILE__)}/bootstrap_builders"
+
+  autoload :ApplicationHelpers, "#{path}/application_helpers"
+  autoload :Box, "#{path}/box"
+  autoload :Button, "#{path}/button"
 end

@@ -6,6 +6,8 @@ class BootstrapBuilders::Box
     @table = args[:table]
     @block = args.fetch(:block)
     @context = args.fetch(:context)
+    @class = args[:class]
+    @data = args[:data]
 
     if @width.is_a?(Fixnum) || @width.is_a?(Integer)
       @width = "#{@width}px"
@@ -15,7 +17,7 @@ class BootstrapBuilders::Box
   end
 
   def html
-    @panel = HtmlGen::Element.new(:div, inden: "  ", classes: ["panel", "panel-default"], css: {width: @width})
+    @panel = HtmlGen::Element.new(:div, inden: "  ", classes: container_classes, css: {width: @width}, data: @data)
 
     add_heading if @title || @right
 
@@ -38,7 +40,7 @@ private
 
   def add_heading
     heading = @panel.add_ele(:div, classes: ["panel-heading", "clearfix"])
-    title = heading.add_ele(:div, classes: ["panel-title", "pull-left"], str: @title)
+    heading.add_ele(:div, classes: ["panel-title", "pull-left"], str: @title)
     heading.add_ele(:div, classes: ["pull-right"], str_html: @right.to_s) if @right
   end
 
@@ -48,5 +50,17 @@ private
 
   def add_body
     @panel.add_html(@context.content_tag(:div, nil, class: ["panel-body"], &@block))
+  end
+
+  def container_classes
+    classes = ["panel", "panel-default"]
+
+    if @class.is_a?(String)
+      classes += @class.split(/\s+/)
+    elsif @class.is_a?(Array)
+      classes += @class
+    end
+
+    classes
   end
 end
