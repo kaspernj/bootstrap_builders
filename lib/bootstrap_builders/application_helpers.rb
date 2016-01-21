@@ -37,7 +37,7 @@ module ApplicationHelpers
   end
 
   def bs_table(args = {}, &blk)
-    classes = ["table", "table-striped", "table-hover"]
+    classes = ["table", "table-bordered", "table-striped", "table-hover"]
 
     if args[:class].is_a?(String)
       classes += args.fetch(:class).split(/\s+/)
@@ -45,6 +45,6 @@ module ApplicationHelpers
       classes += args.fetch(:class)
     end
 
-    content_for(:table, class: classes, &blk)
+    content_tag(:table, class: classes, &blk)
   end
 end
