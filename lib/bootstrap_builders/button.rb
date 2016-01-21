@@ -1,6 +1,6 @@
 class BootstrapBuilders::Button
   def initialize(args)
-    @title = args.fetch(:title)
+    @label = args.fetch(:label)
     @mini = args[:mini]
     @class = args[:class]
     @url = args.fetch(:url)
@@ -31,7 +31,7 @@ class BootstrapBuilders::Button
     @context.link_to @url, class: classes, data: @args[:data], method: @args[:method], remote: @args[:remote] do
       html = ""
       html << @context.content_tag(:i, nil, class: ["fa", "fa-#{@icon}"])
-      html << " #{@title}"
+      html << " #{@label}" if @label
       html.html_safe
     end
   end
