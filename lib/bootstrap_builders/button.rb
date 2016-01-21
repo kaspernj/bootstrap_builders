@@ -7,7 +7,7 @@ class BootstrapBuilders::Button
     @args = args
     @context = args.fetch(:context)
     @icon = args.fetch(:icon)
-    can = args[:can]
+    @can = args[:can]
   end
 
   def classes
@@ -38,26 +38,24 @@ class BootstrapBuilders::Button
 
 private
 
-  def model_from_url(url)
-    if url.is_a?(Array) && url.last.is_a?(ActiveRecord::Base)
-      url.last
-    elsif url.is_a?(ActiveRecord::Base)
-      url
-    else
-      return nil
-    end
-  end
-
   def can?
-    return true if !can_object || !@args[:can_type]
-    @context.can? @args.fetch(:can_type), can_object
+    authorize_object = can_object
+    return true if !authorize_object || !@args[:can_type]
+    @context.can? @args.fetch(:can_type), authorize_object
   end
 
   def can_object
-    if @args[:can]
-      @args[:can]
-    elsif @args[:url].is_a?(Array) && @args[:url].last.is_a?(ActiveRecord::Base)
-      @args[:url].last
+    return @can if @can
+
+    if @url.is_a?(Array)
+      model = @url.last
+    else
+      model = @url
     end
+
+    return nil unless model
+
+    ancestors = model.class.ancestors.map(&:name)
+    return model if ancestors.include?("ActiveRecord::Base") || ancestors.include?("BazaModels::Model")
   end
 end

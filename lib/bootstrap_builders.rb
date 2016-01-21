@@ -1,4 +1,3 @@
-require "auto_autoloader"
 require "html_gen"
 
 class BootstrapBuilders

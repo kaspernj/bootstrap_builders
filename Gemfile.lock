@@ -28,7 +28,7 @@ GEM
       oauth2
     hashie (3.4.3)
     highline (1.7.8)
-    html_gen (0.0.10)
+    html_gen (0.0.11)
       string-cases
     jeweler (2.0.1)
       builder
@@ -87,10 +87,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  auto_autoloader (>= 0.0.4)
   best_practice_project!
   bundler (~> 1.0)
-  html_gen (>= 0.0.10)
+  html_gen (>= 0.0.11)
   jeweler (~> 2.0.1)
   rdoc (~> 3.12)
   rspec (~> 3.4.0)

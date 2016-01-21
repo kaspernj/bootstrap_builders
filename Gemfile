@@ -1,7 +1,6 @@
 source "http://rubygems.org"
 
-gem "html_gen", ">= 0.0.10"
-gem "auto_autoloader", ">= 0.0.4"
+gem "html_gen", ">= 0.0.11"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
