@@ -36,7 +36,15 @@ module ApplicationHelpers
     BootstrapBuilders::Button.new(args.merge(title: t("show"), icon: "zoom-in", context: self, can_type: :show)).html
   end
 
-  def bs_table(&blk)
-    content_for(:table, class: ["table", "table-striped", "table-hover"], &blk)
+  def bs_table(args = {}, &blk)
+    classes = ["table", "table-striped", "table-hover"]
+
+    if args[:class].is_a?(String)
+      classes += args.fetch(:class).split(/\s+/)
+    elsif args[:class].is_a?(Array)
+      classes += args.fetch(:class)
+    end
+
+    content_for(:table, class: classes, &blk)
   end
 end
