@@ -28,6 +28,22 @@ end
   %tbody
     %tr
       %td= "Test"
+```
+
+### Table
+```haml
+= bs_table do
+  %tbody
+    %tr
+      %td= "Test"
+```
+
+### Buttons
+```haml
+= bs_new_button url: [:admin, User]
+= bs_edit_button url: [:admin, user], mini: true
+= bs_destroy_button url: [:admin, user], label: false
+```
 
 ## Contributing to bootstrap_builders
 
