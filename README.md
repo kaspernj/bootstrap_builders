@@ -10,7 +10,7 @@ gem "bootstrap_builders"
 Then add to your `ApplicationHelper` module:
 ```ruby
 module ApplicationHelper
-  include BootstrapBuilders::Helpers
+  include BootstrapBuilders::ApplicationHelper
 end
 ```
 
