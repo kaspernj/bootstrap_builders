@@ -18,6 +18,7 @@ module BootstrapBuilders::ApplicationHelper
   def bs_edit_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("edit") unless args.key?(:label)
+    args[:url] = [:edit, args.fetch(:url)] if args[:url] && !args[:url].is_a?(Array) && args[:url].is_a?(ActiveRecord::Base)
 
     button = BootstrapBuilders::Button.new(args.merge(icon: "wrench", context: self, can_type: :edit))
     button.classes.add(["bb-btn", "bb-btn-edit"])
