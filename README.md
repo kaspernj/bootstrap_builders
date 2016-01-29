@@ -17,12 +17,18 @@ end
 ## Usage
 
 ### Box
+
+1. Panel in all its glory with elements and classes
+2. Controls if `:right` argument is given
+3. Table if `:table` argument is given
+
 ```haml
 = box "Title of box", right: button_content do
   Content of box
 ```
 
 ### Box with a table
+
 ```haml
 = box "Title of box", table: true do
   %tbody
@@ -31,6 +37,9 @@ end
 ```
 
 ### Table
+
+1. Adds Bootstrap classes: "table", "table-hover", "table-striped"
+
 ```haml
 = bs_table do
   %tbody
@@ -39,10 +48,15 @@ end
 ```
 
 ### Buttons
+
+1. Adds icons automatically
+2. Adds labels automatically
+3. Doesn't show button if CanCan doesn't allow it
+
 ```haml
-= bs_new_button url: [:admin, User]
-= bs_edit_button url: [:admin, user], mini: true
-= bs_destroy_button url: [:admin, user], label: false
+= bs_new_btn url: [:admin, User]
+= bs_edit_btn url: [:admin, user], mini: true
+= bs_destroy_btn url: [:admin, user], label: false
 ```
 
 ## Contributing to bootstrap_builders
