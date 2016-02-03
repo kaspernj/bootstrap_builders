@@ -1,4 +1,8 @@
 module BootstrapBuilders::ApplicationHelper
+  def bs_attribute_rows(model, attributes)
+    BootstrapBuilders::AttributeRows.new(model: model, attributes: attributes, context: self).html
+  end
+
   def bs_box(*opts, &blk)
     title = opts.shift unless opts.first.is_a?(Hash)
     width = opts.shift unless opts.first.is_a?(Hash)
@@ -18,7 +22,8 @@ module BootstrapBuilders::ApplicationHelper
   def bs_edit_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("edit") unless args.key?(:label)
-    args[:url] = [:edit, args.fetch(:url)] if args[:url] && !args[:url].is_a?(Array) && args[:url].is_a?(ActiveRecord::Base)
+
+    args[:url] = [:edit, args.fetch(:url)] if args[:url] && !args[:url].is_a?(Array) && BootstrapBuilders::IsAChecker.is_a?(args[:url], "ActiveRecord::Base")
 
     button = BootstrapBuilders::Button.new(args.merge(icon: "wrench", context: self, can_type: :edit))
     button.classes.add(["bb-btn", "bb-btn-edit"])

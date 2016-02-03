@@ -1,5 +1,5 @@
 module WorkingHelpers
-  include BootstrapBuilders::ApplicationHelpers
+  include BootstrapBuilders::ApplicationHelper
 
   def t(key)
     key
