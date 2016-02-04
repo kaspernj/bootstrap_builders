@@ -40,7 +40,13 @@ private
 
   def add_heading
     heading = @panel.add_ele(:div, classes: ["panel-heading", "clearfix"])
-    heading.add_ele(:div, classes: ["panel-title", "pull-left"], str: @title)
+
+    if !@title || @title.to_s.strip.empty?
+      heading.add_ele(:div, classes: ["panel-title", "pull-left"], str_html: "&nbsp;") if @right
+    else
+      heading.add_ele(:div, classes: ["panel-title", "pull-left"], str: @title)
+    end
+
     heading.add_ele(:div, classes: ["pull-right"], str_html: @right.to_s) if @right
   end
 
