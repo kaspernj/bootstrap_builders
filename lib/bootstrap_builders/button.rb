@@ -1,4 +1,6 @@
 class BootstrapBuilders::Button
+  attr_accessor :label
+
   def self.parse_url_args(args)
     real_args = args.last
     real_args[:url] ||= args.shift if args.first
@@ -6,7 +8,7 @@ class BootstrapBuilders::Button
   end
 
   def initialize(args)
-    @label = args.fetch(:label)
+    @label = args[:label]
     @mini = args[:mini]
     @class = args[:class]
     @url = args.fetch(:url)
@@ -29,7 +31,7 @@ class BootstrapBuilders::Button
   def html
     return unless can?
 
-    @context.link_to @url, class: classes.classes, data: @args[:data], method: @args[:method], remote: @args[:remote] do
+    @context.link_to(@url, class: classes.classes, data: @args[:data], method: @args[:method], remote: @args[:remote]) do
       html = ""
       html << @context.content_tag(:i, nil, class: ["fa", "fa-#{@icon}"])
       html << " #{@label}" if @label
@@ -59,7 +61,7 @@ private
     if !@can_object && @can_object != false
       if @can
         can_object_from_given_can_argument
-      else @url
+      elsif @url
         can_object_from_url
       end
 

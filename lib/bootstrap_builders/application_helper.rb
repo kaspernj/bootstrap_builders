@@ -43,7 +43,6 @@ module BootstrapBuilders::ApplicationHelper
     button.classes.add(["btn-danger", "bb-btn", "bb-btn-destroy"])
     button.classes.add("bb-btn-destroy-#{button.can_model_class.name.tableize.singularize}") if button.can_model_class
     button.classes.add("bb-btn-destroy-#{button.can_model_class.name.tableize.singularize}-#{button.can_model.id}") if button.can_model
-
     button.html
   end
 
@@ -54,6 +53,27 @@ module BootstrapBuilders::ApplicationHelper
 
     button.classes.add(["bb-btn", "bb-btn-new"])
     button.classes.add("bb-btn-new-#{button.can_model_class.name.tableize.singularize}") if button.can_model_class
+    button.html
+  end
+
+  def bs_index_btn(*args)
+    args = BootstrapBuilders::Button.parse_url_args(args)
+    button = BootstrapBuilders::Button.new(args.merge(icon: "table", context: self, can_type: :index))
+
+    if button.label.to_s.strip.empty?
+      if button.can_model_class
+        button.label = button.can_model_class.model_name.human(count: 2)
+      else
+        button.label = t("index")
+      end
+    end
+
+    puts "Label: #{button.label}"
+
+    button.classes.add(["bb-btn", "bb-btn-index"])
+    button.classes.add("bb-btn-index-#{button.can_model_class.name.tableize}") if button.can_model_class
+
+    puts "HTML: #{button.html}"
 
     button.html
   end
@@ -77,6 +97,8 @@ module BootstrapBuilders::ApplicationHelper
       classes += args.fetch(:class)
     end
 
-    content_tag(:table, class: classes, &blk)
+    args[:class] = classes
+
+    content_tag(:table, args, &blk)
   end
 end
