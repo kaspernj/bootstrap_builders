@@ -9,6 +9,6 @@ class BootstrapBuilders::IsAChecker
   end
 
   def is_a?
-    @object.class.ancestors.include?(@class_name)
+    @object.class.ancestors.map(&:name).include?(@class_name)
   end
 end
