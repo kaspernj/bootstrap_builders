@@ -59,7 +59,7 @@ private
   end
 
   def add_table
-    @panel.add_html(@context.content_tag(:table, nil, class: ["table", "table-striped", "table-hover"], &@block))
+    @panel.add_html(@context.content_tag(:table, nil, class: ["table", "table-striped", "table-hover", "bb-panel-table"], &@block))
   end
 
   def add_body
@@ -67,7 +67,7 @@ private
   end
 
   def container_classes
-    classes = ["panel", "panel-default"]
+    classes = ["panel", "panel-default", "bb-panel"]
 
     if @class.is_a?(String)
       classes += @class.split(/\s+/)
