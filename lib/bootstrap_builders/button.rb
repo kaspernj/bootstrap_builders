@@ -9,19 +9,20 @@ class BootstrapBuilders::Button
 
   def initialize(args)
     @label = args[:label]
-    @mini = args[:mini]
     @class = args[:class]
     @url = args.fetch(:url)
     @args = args
     @context = args.fetch(:context)
-    @icon = args.fetch(:icon)
+    @icon = args[:icon]
     @can = args[:can]
+    @small = args[:small]
+    @mini = args[:mini]
   end
 
   def classes
     unless @classes
       @classes = BootstrapBuilders::ClassAttributeHandler.new(class: ["btn", "btn-default"])
-      @classes.add("btn-xs") if @mini
+      @classes.add("btn-xs") if @mini || @small
       @classes.add(@class) if @class
     end
 
@@ -33,9 +34,9 @@ class BootstrapBuilders::Button
 
     @context.link_to(@url, class: classes.classes, data: @args[:data], method: @args[:method], remote: @args[:remote]) do
       html = ""
-      html << @context.content_tag(:i, nil, class: ["fa", "fa-#{@icon}"])
-      html << " #{@label}" if @label
-      html.html_safe
+      html << @context.content_tag(:i, nil, class: ["fa", "fa-#{@icon}"]) if @icon
+      html << " #{@label}" if @label && !@mini
+      html.strip.html_safe
     end
   end
 

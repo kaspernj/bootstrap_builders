@@ -19,6 +19,14 @@ module BootstrapBuilders::ApplicationHelper
     BootstrapBuilders::Box.new(args.merge(title: title, width: width, right: right, block: blk, context: self)).html
   end
 
+  def bs_btn(*args)
+    args = BootstrapBuilders::Button.parse_url_args(args)
+    args[:context] = self
+    button = BootstrapBuilders::Button.new(args)
+    button.classes.add("bb-btn")
+    button.html
+  end
+
   def bs_edit_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("edit") unless args.key?(:label)
