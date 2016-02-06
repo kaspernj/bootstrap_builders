@@ -21,19 +21,25 @@ class BootstrapBuilders::AttributeRows
           link_method_name = "link_to_#{StringCases.camel_to_snake(model_value.class.name)}"
 
           if @view.respond_to?(:link_to_model)
-            tr.add_ele(:td, str: @view.link_to_model(model_value))
+            str = @view.link_to_model(model_value)
           elsif @context.respond_to?(link_method_name)
-            tr.add_ele(:td, str_html: @context.__send__(link_method_name, model_value))
+            str_html = @context.__send__(link_method_name, model_value)
           else
-            tr.add_ele(:td, str: model_value.name)
+            str = model_value.name
           end
         end
       elsif column_type(attribute) == :datetime || column_type(attribute) == :date
-        tr.add_ele(:td, str: @context.l(column_value(attribute), format: :long)) if column_value(attribute)
+        str = @context.l(column_value(attribute), format: :long) if column_value(attribute)
       elsif column_type(attribute) == :money
-        tr.add_ele(:td, str: @context.number_to_currency(column_value(attribute), unit: ""))
+        str = @context.number_to_currency(column_value(attribute), unit: "")
       else
-        tr.add_ele(:td, str: column_value(attribute).to_s)
+        str = column_value(attribute).to_s
+      end
+
+      if str
+        tr.add_ele(:td, str: str)
+      else
+        tr.add_ele(:td, str_html: str_html)
       end
 
       elements << tr.html
