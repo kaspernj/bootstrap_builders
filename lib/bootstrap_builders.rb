@@ -7,6 +7,6 @@ class BootstrapBuilders
   autoload :AttributeRows, "#{path}/attribute_rows"
   autoload :ClassAttributeHandler, "#{path}/class_attribute_handler"
   autoload :IsAChecker, "#{path}/is_a_checker"
-  autoload :Box, "#{path}/box"
+  autoload :Panel, "#{path}/panel"
   autoload :Button, "#{path}/button"
 end

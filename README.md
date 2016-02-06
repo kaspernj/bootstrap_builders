@@ -16,21 +16,21 @@ end
 
 ## Usage
 
-### Box
+### Panel
 
 1. Panel in all its glory with elements and classes
 2. Controls if `:right` argument is given
 3. Table if `:table` argument is given
 
 ```haml
-= box "Title of box", right: button_content do
-  Content of box
+= bb_panel "Title of panel", right: button_content do
+  Content of panel
 ```
 
-### Box with a table
+### Panel with a table
 
 ```haml
-= box "Title of box", table: true do
+= bb_panel "Title of panel", table: true do
   %tbody
     %tr
       %td= "Test"
@@ -41,7 +41,7 @@ end
 1. Adds Bootstrap classes: "table", "table-hover", "table-striped"
 
 ```haml
-= bs_table do
+= bb_table do
   %tbody
     %tr
       %td= "Test"
@@ -54,9 +54,9 @@ end
 3. Doesn't show button if CanCan doesn't allow it
 
 ```haml
-= bs_new_btn url: [:admin, User]
-= bs_edit_btn url: [:admin, user], mini: true
-= bs_destroy_btn url: [:admin, user], label: false
+= bb_new_btn url: [:admin, User]
+= bb_edit_btn url: [:admin, user], mini: true
+= bb_destroy_btn url: [:admin, user], label: false
 ```
 
 ## Contributing to bootstrap_builders

@@ -1,9 +1,9 @@
 module BootstrapBuilders::ApplicationHelper
-  def bs_attribute_rows(model, attributes)
+  def bb_attribute_rows(model, attributes)
     BootstrapBuilders::AttributeRows.new(model: model, attributes: attributes, context: self).html
   end
 
-  def bs_box(*opts, &blk)
+  def bb_panel(*opts, &blk)
     title = opts.shift unless opts.first.is_a?(Hash)
     width = opts.shift unless opts.first.is_a?(Hash)
 
@@ -16,10 +16,10 @@ module BootstrapBuilders::ApplicationHelper
       args = {}
     end
 
-    BootstrapBuilders::Box.new(args.merge(title: title, width: width, right: right, block: blk, context: self)).html
+    BootstrapBuilders::Panel.new(args.merge(title: title, width: width, right: right, block: blk, context: self)).html
   end
 
-  def bs_btn(*args)
+  def bb_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:context] = self
     button = BootstrapBuilders::Button.new(args)
@@ -27,7 +27,7 @@ module BootstrapBuilders::ApplicationHelper
     button.html
   end
 
-  def bs_edit_btn(*args)
+  def bb_edit_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("edit") unless args.key?(:label)
 
@@ -40,7 +40,7 @@ module BootstrapBuilders::ApplicationHelper
     button.html
   end
 
-  def bs_destroy_btn(*args)
+  def bb_destroy_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("delete") unless args.key?(:label)
 
@@ -54,7 +54,7 @@ module BootstrapBuilders::ApplicationHelper
     button.html
   end
 
-  def bs_new_btn(*args)
+  def bb_new_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("add_new") unless args.key?(:label)
     button = BootstrapBuilders::Button.new(args.merge(icon: "pencil", context: self, can_type: :new))
@@ -64,7 +64,7 @@ module BootstrapBuilders::ApplicationHelper
     button.html
   end
 
-  def bs_index_btn(*args)
+  def bb_index_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     button = BootstrapBuilders::Button.new(args.merge(icon: "table", context: self, can_type: :index))
 
@@ -86,7 +86,7 @@ module BootstrapBuilders::ApplicationHelper
     button.html
   end
 
-  def bs_show_btn(*args)
+  def bb_show_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("show") unless args.key?(:label)
     button = BootstrapBuilders::Button.new(args.merge(icon: "zoom-in", context: self, can_type: :show))
@@ -96,7 +96,7 @@ module BootstrapBuilders::ApplicationHelper
     button.html
   end
 
-  def bs_table(args = {}, &blk)
+  def bb_table(args = {}, &blk)
     classes = ["table", "table-bordered", "table-striped", "table-hover"]
 
     if args[:class].is_a?(String)

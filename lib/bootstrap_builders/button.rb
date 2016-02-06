@@ -2,8 +2,14 @@ class BootstrapBuilders::Button
   attr_accessor :label
 
   def self.parse_url_args(args)
-    real_args = args.last
+    if args.last.is_a?(Hash)
+      real_args = args.pop
+    else
+      real_args = {}
+    end
+
     real_args[:url] ||= args.shift if args.first
+    real_args[:label] ||= args.shift if args.first
     real_args
   end
 

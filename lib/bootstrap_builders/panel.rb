@@ -1,8 +1,8 @@
-class BootstrapBuilders::Box
+class BootstrapBuilders::Panel
   def initialize(args)
     @title = args.fetch(:title)
     @width = args.fetch(:width)
-    @right = args[:right]
+    @controls = args[:controls]
     @table = args[:table]
     @block = args.fetch(:block)
     @context = args.fetch(:context)
@@ -19,7 +19,7 @@ class BootstrapBuilders::Box
   def html
     @panel = HtmlGen::Element.new(:div, inden: "  ", classes: container_classes, css: {width: @width}, data: @data)
 
-    add_heading if @title || @right
+    add_heading if @title || @controls
 
     if @table
       add_table
@@ -42,12 +42,20 @@ private
     heading = @panel.add_ele(:div, classes: ["panel-heading", "clearfix"])
 
     if !@title || @title.to_s.strip.empty?
-      heading.add_ele(:div, classes: ["panel-title", "pull-left"], str_html: "&nbsp;") if @right
+      heading.add_ele(:div, classes: ["panel-title", "pull-left"], str_html: "&nbsp;") if @controls
     else
       heading.add_ele(:div, classes: ["panel-title", "pull-left"], str: @title)
     end
 
-    heading.add_ele(:div, classes: ["pull-right"], str_html: @right.to_s) if @right
+    heading.add_ele(:div, classes: ["pull-right"], str_html: controls_content) if @controls
+  end
+
+  def controls_content
+    if @controls.is_a?(Array)
+      @controls.join(" ")
+    else
+      @controls.to_s
+    end
   end
 
   def add_table
