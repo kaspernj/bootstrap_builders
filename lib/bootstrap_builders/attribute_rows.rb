@@ -13,7 +13,7 @@ class BootstrapBuilders::AttributeRows
       tr.add_ele(:th, str: @model.class.human_attribute_name(attribute))
 
       if column_type(attribute) == :boolean
-        tr.add_ele(:td, str: @model.__send__("#{attribute}?") ? @context.t("yes") : @context.t("no"))
+        str = @model.__send__("#{attribute}?") ? @context.t("yes") : @context.t("no")
       elsif column_type(attribute) == :model
         model_value = column_value(attribute)
 
