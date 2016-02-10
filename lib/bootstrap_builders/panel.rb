@@ -1,7 +1,6 @@
 class BootstrapBuilders::Panel
   def initialize(args)
     @title = args.fetch(:title)
-    @width = args.fetch(:width)
     @controls = args[:controls]
     @table = args[:table]
     @block = args.fetch(:block)
@@ -9,15 +8,12 @@ class BootstrapBuilders::Panel
     @class = args[:class]
     @data = args[:data]
 
-    if @width.is_a?(Fixnum) || @width.is_a?(Integer)
-      @width = "#{@width}px"
-    else
-      @width = "100%"
-    end
+    @css = {}
+    @css[:width] = args.fetch(:width) if args[:width]
   end
 
   def html
-    @panel = HtmlGen::Element.new(:div, inden: "  ", classes: container_classes, css: {width: @width}, data: @data)
+    @panel = HtmlGen::Element.new(:div, inden: "  ", classes: container_classes, css: @css, data: @data)
 
     add_heading if @title || @controls
 
