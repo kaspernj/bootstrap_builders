@@ -38,6 +38,8 @@ class BootstrapBuilders::Button
   def html
     return unless can?
 
+    handle_confirm_argument
+
     @context.link_to(@url, class: classes.classes, data: @args[:data], method: @args[:method], remote: @args[:remote]) do
       html = ""
       html << @context.content_tag(:i, nil, class: ["fa", "fa-#{@icon}"]) if @icon
@@ -117,5 +119,11 @@ private
       @can_model = @can unless @can.is_a?(Class)
       @can_model_class = model_class
     end
+  end
+
+  def handle_confirm_argument
+    return unless @args[:confirm]
+    @args[:data] ||= {}
+    @args[:data][:confirm] = I18n.t("are_you_sure")
   end
 end
