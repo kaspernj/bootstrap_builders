@@ -9,8 +9,8 @@ class BootstrapBuilders::AttributeRows
     elements = []
 
     @attributes.each do |attribute|
-      tr = HtmlGen::Element.new(:tr)
-      tr.add_ele(:th, str: @model.class.human_attribute_name(attribute))
+      tr = HtmlGen::Element.new(:tr, classes: ["bb-attributes-row", "bb-attributes-row-#{attribute}"])
+      tr.add_ele(:th, classes: ["bb-attributes-row-title"], str: @model.class.human_attribute_name(attribute))
 
       if column_type(attribute) == :boolean
         str = @model.__send__("#{attribute}?") ? @context.t("yes") : @context.t("no")
@@ -37,9 +37,9 @@ class BootstrapBuilders::AttributeRows
       end
 
       if str
-        tr.add_ele(:td, str: str)
+        tr.add_ele(:td, classes: ["bb-attributes-row-value"], str: str)
       else
-        tr.add_ele(:td, str_html: str_html)
+        tr.add_ele(:td, classes: ["bb-attributes-row-value"], str_html: str_html)
       end
 
       elements << tr.html
