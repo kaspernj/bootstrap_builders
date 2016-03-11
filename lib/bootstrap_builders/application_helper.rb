@@ -30,7 +30,7 @@ module BootstrapBuilders::ApplicationHelper
   def bb_edit_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("edit") unless args.key?(:label)
-
+    args[:title] ||= t("edit") if args[:mini]
     args[:url] = [:edit, args.fetch(:url)] if args[:url] && !args[:url].is_a?(Array) && BootstrapBuilders::IsAChecker.is_a?(args[:url], "ActiveRecord::Base")
 
     button = BootstrapBuilders::Button.new(args.merge(icon: "wrench", context: self, can_type: :edit))
@@ -43,6 +43,7 @@ module BootstrapBuilders::ApplicationHelper
   def bb_destroy_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("delete") unless args.key?(:label)
+    args[:title] ||= t("delete") if args[:mini]
 
     args[:data] ||= {}
     args[:data][:confirm] ||= t("are_you_sure")
@@ -57,8 +58,9 @@ module BootstrapBuilders::ApplicationHelper
   def bb_new_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("add_new") unless args.key?(:label)
-    button = BootstrapBuilders::Button.new(args.merge(icon: "pencil", context: self, can_type: :new))
+    args[:title] ||= t("new") if args[:mini]
 
+    button = BootstrapBuilders::Button.new(args.merge(icon: "pencil", context: self, can_type: :new))
     button.classes.add(["bb-btn", "bb-btn-new"])
     button.classes.add("bb-btn-new-#{button.can_model_class.name.tableize.singularize}") if button.can_model_class
     button.html
@@ -66,6 +68,8 @@ module BootstrapBuilders::ApplicationHelper
 
   def bb_index_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
+    args[:title] ||= t("index") if args[:mini]
+
     button = BootstrapBuilders::Button.new(args.merge(icon: "table", context: self, can_type: :index))
 
     if button.label.to_s.strip.empty?
@@ -76,20 +80,17 @@ module BootstrapBuilders::ApplicationHelper
       end
     end
 
-    puts "Label: #{button.label}"
-
     button.classes.add(["bb-btn", "bb-btn-index"])
     button.classes.add("bb-btn-index-#{button.can_model_class.name.tableize}") if button.can_model_class
-
-    puts "HTML: #{button.html}"
-
     button.html
   end
 
   def bb_show_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("show") unless args.key?(:label)
-    button = BootstrapBuilders::Button.new(args.merge(icon: "zoom-in", context: self, can_type: :show))
+    args[:title] ||= t("show") if args[:mini]
+
+    button = BootstrapBuilders::Button.new(args.merge(icon: "square-o", context: self, can_type: :show))
     button.classes.add(["bb-btn", "bb-btn-show"])
     button.classes.add("bb-btn-show-#{button.can_model_class.name.tableize.singularize}") if button.can_model_class
     button.classes.add("bb-btn-show-#{button.can_model_class.name.tableize.singularize}-#{button.can_model.id}") if button.can_model
