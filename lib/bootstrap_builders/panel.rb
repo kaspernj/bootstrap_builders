@@ -55,7 +55,10 @@ private
   end
 
   def add_table
-    @panel.add_html(@context.content_tag(:table, nil, class: ["table", "table-striped", "table-hover", "bb-panel-table"], &@block))
+    table_responsive = @panel.add_ele(:div, classes: ["table-responsive"])
+    table_responsive.add_html(
+      @context.content_tag(:table, nil, class: ["table", "table-striped", "table-hover", "bb-panel-table"], &@block)
+    )
   end
 
   def add_body
