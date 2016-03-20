@@ -56,9 +56,18 @@ private
 
   def add_table
     table_responsive = @panel.add_ele(:div, classes: ["table-responsive"])
-    table_responsive.add_html(
-      @context.content_tag(:table, nil, class: ["table", "table-striped", "table-hover", "bb-panel-table"], &@block)
-    )
+
+    table_args = {
+      class: "bb-panel-table",
+      bs_classes: ["table-striped", "table-hover", "bb-panel-table"],
+      context: @context,
+      blk: @block
+    }
+
+    table_args.merge!(@table) if @table.is_a?(Hash)
+
+    table = BootstrapBuilders::Table.new(table_args)
+    table_responsive.add_html(table.html)
   end
 
   def add_body
