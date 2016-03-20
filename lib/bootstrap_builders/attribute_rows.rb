@@ -9,7 +9,7 @@ class BootstrapBuilders::AttributeRows
     elements = []
 
     @attributes.each do |attribute|
-      tr = HtmlGen::Element.new(:tr, classes: ["bb-attributes-row", "bb-attributes-row-#{attribute}"])
+      tr = HtmlGen::Element.new(:tr, inden: "  ", classes: ["bb-attributes-row", "bb-attributes-row-#{attribute}"])
       tr.add_ele(:th, classes: ["bb-attributes-row-title"], str: @model.class.human_attribute_name(attribute))
 
       if column_type(attribute) == :boolean
