@@ -45,6 +45,9 @@ Style/NilComparison:
 Style/SignalException:
   EnforcedStyle: only_raise
 
+Style/ConditionalAssignment:
+  Enabled: false
+
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 

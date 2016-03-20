@@ -1,0 +1,2 @@
+class BootstrapBuilders::TablesController
+end

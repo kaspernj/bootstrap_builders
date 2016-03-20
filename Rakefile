@@ -1,53 +1,26 @@
-# encoding: utf-8
-
-require "rubygems"
-require "bundler"
 begin
-  Bundler.setup(:default, :development)
-rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
-  exit e.status_code
+  require "bundler/setup"
+rescue LoadError
+  puts "You must `gem install bundler` and `bundle install` to run rake tasks"
 end
-require "rake"
-
-require "jeweler"
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
-  gem.name = "bootstrap_builders"
-  gem.homepage = "http://github.com/kaspernj/bootstrap_builders"
-  gem.license = "MIT"
-  gem.summary = %(A library to generate Bootstrap HTML for Rails.)
-  gem.description = %(A library to generate Bootstrap HTML for Rails.)
-  gem.email = "k@spernj.org"
-  gem.authors = ["kaspernj"]
-  # dependencies defined in Gemfile
-end
-Jeweler::RubygemsDotOrgTasks.new
-
-require "rspec/core"
-require "rspec/core/rake_task"
-RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = FileList["spec/**/*_spec.rb"]
-end
-
-desc "Code coverage detail"
-task :simplecov do
-  ENV["COVERAGE"] = "true"
-  Rake::Task["spec"].execute
-end
-
-task default: :spec
 
 require "rdoc/task"
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?("VERSION") ? File.read("VERSION") : ""
 
+RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = "rdoc"
-  rdoc.title = "bootstrap_builders #{version}"
-  rdoc.rdoc_files.include("README*")
+  rdoc.title    = "BootstrapBuilders"
+  rdoc.options << "--line-numbers"
+  rdoc.rdoc_files.include("README.rdoc")
   rdoc.rdoc_files.include("lib/**/*.rb")
 end
 
-require "best_practice_project"
-BestPracticeProject.load_tasks
+APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
+load "rails/tasks/engine.rake"
+load "rails/tasks/statistics.rake"
+
+Bundler::GemHelper.install_tasks
+
+if Rails.env.development? || Rails.env.test?
+  require "best_practice_project"
+  BestPracticeProject.load_tasks
+end
