@@ -1,4 +1,4 @@
-# bootstrap_builders
+# BootstrapBuilders
 
 ## Install
 
@@ -73,4 +73,3 @@ end
 
 Copyright (c) 2016 kaspernj. See LICENSE.txt for
 further details.
-

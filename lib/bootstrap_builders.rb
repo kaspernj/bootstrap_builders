@@ -1,12 +1,13 @@
+require "bootstrap_builders/engine"
+require "haml"
 require "html_gen"
 
-class BootstrapBuilders
-  path = "#{File.dirname(__FILE__)}/bootstrap_builders"
+module BootstrapBuilders
+  extend ActiveSupport::Autoload
 
-  autoload :ApplicationHelper, "#{path}/application_helper"
-  autoload :AttributeRows, "#{path}/attribute_rows"
-  autoload :ClassAttributeHandler, "#{path}/class_attribute_handler"
-  autoload :IsAChecker, "#{path}/is_a_checker"
-  autoload :Panel, "#{path}/panel"
-  autoload :Button, "#{path}/button"
+  autoload :AttributeRows
+  autoload :ClassAttributeHandler
+  autoload :IsAChecker
+  autoload :Panel
+  autoload :Button
 end

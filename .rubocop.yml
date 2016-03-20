@@ -9,6 +9,12 @@ AllCops:
 Style/FileName:
   Enabled: false
 
+Metrics/CyclomaticComplexity:
+  Max: 15
+
+Metrics/PerceivedComplexity:
+  Max: 20
+
 Metrics/LineLength:
   Max: 160
 
@@ -16,7 +22,7 @@ Metrics/MethodLength:
   Max: 50
 
 Metrics/AbcSize:
-  Max: 25
+  Max: 50
 
 Metrics/ClassLength:
   Max: 250
@@ -44,6 +50,9 @@ Style/NilComparison:
 
 Style/SignalException:
   EnforcedStyle: only_raise
+
+Style/ConditionalAssignment:
+  Enabled: false
 
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
