@@ -22,10 +22,17 @@ Rails.application.routes.draw do
       collection do
         get :panel_with_content
         get :panel_with_table
+        get :panel_with_table_and_custom_classes
       end
     end
 
-    resources :tables, only: []
+    resources :tables, only: [] do
+      collection do
+        get :custom_classes
+        get :normal_table
+      end
+    end
+
     resources :users
   end
 end

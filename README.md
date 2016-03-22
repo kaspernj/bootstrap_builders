@@ -36,6 +36,14 @@ end
       %td= "Test"
 ```
 
+You can add custom classes like this:
+```haml
+= bb_panel "Title of panel", table: {bs_classes: [:striped]} do
+  %tbody
+    %tr
+      %td Test
+```
+
 ### Table
 
 1. Adds Bootstrap classes: "table", "table-hover", "table-striped"
@@ -46,6 +54,13 @@ end
     %tr
       %td= "Test"
 ```
+
+You can change the default classes like this:
+```ruby
+BootstrapBuilders.configuration.default_table_classes = [:striped, :hover]
+```
+
+The classes "bb-table" and "table" are always added.
 
 ### Buttons
 

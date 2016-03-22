@@ -1,2 +1,7 @@
-class BootstrapBuilders::TablesController
+class BootstrapBuilders::TablesController < ApplicationController
+  def normal_table
+  end
+
+  def custom_classes
+  end
 end

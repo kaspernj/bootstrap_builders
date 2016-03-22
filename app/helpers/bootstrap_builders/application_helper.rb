@@ -98,16 +98,7 @@ module BootstrapBuilders::ApplicationHelper
   end
 
   def bb_table(args = {}, &blk)
-    classes = ["table", "table-bordered", "table-striped", "table-hover", "bb-table"]
-
-    if args[:class].is_a?(String)
-      classes += args.fetch(:class).split(/\s+/)
-    elsif args[:class].is_a?(Array)
-      classes += args.fetch(:class)
-    end
-
-    args[:class] = classes
-
-    content_tag(:table, args, &blk)
+    table = BootstrapBuilders::Table.new(args.merge(context: self, blk: blk))
+    table.html
   end
 end
