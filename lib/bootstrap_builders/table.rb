@@ -30,6 +30,8 @@ private
       classes = BootstrapBuilders.configuration.default_table_classes
     end
 
+    classes.map! { |class_name| "table-#{class_name}" }
+
     if @args[:class].is_a?(String)
       classes += @args.fetch(:class).split(/\s+/)
     elsif @args[:class].is_a?(Array)

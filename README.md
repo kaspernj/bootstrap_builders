@@ -38,7 +38,7 @@ end
 
 You can add custom classes like this:
 ```haml
-= bb_panel "Title of panel", table: {bs_classes: ["table-striped"]} do
+= bb_panel "Title of panel", table: {bs_classes: [:striped]} do
   %tbody
     %tr
       %td Test
@@ -57,7 +57,7 @@ You can add custom classes like this:
 
 You can change the default classes like this:
 ```ruby
-BootstrapBuilders.configuration.default_table_classes = ["table-striped", "my-table"]
+BootstrapBuilders.configuration.default_table_classes = [:striped, :hover]
 ```
 
 The classes "bb-table" and "table" are always added.

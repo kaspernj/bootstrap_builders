@@ -27,7 +27,7 @@ describe BootstrapBuilders::Table do
     old_classes = BootstrapBuilders.configuration.default_table_classes
 
     begin
-      BootstrapBuilders.configuration.default_table_classes = ["table-bordered"]
+      BootstrapBuilders.configuration.default_table_classes = [:bordered]
 
       visit normal_table_bootstrap_builders_tables_path
 
