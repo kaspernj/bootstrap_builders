@@ -72,6 +72,7 @@ The classes "bb-table" and "table" are always added.
 = bb_new_btn url: [:admin, User]
 = bb_edit_btn url: [:admin, user], mini: true
 = bb_destroy_btn url: [:admin, user], label: false
+= bb_btn "/url", "My label", :block, :lg, confirm: true
 ```
 
 ## Contributing to bootstrap_builders
