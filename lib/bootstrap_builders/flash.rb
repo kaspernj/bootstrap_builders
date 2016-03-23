@@ -2,7 +2,7 @@ class BootstrapBuilders::Flash
   def initialize(args)
     @class = args[:class]
     @alert_types = [:success, :info, :warning, :danger]
-    @context = args[:context]
+    @context = args.fetch(:context)
   end
 
   def html

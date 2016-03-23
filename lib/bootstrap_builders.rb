@@ -8,10 +8,10 @@ module BootstrapBuilders
   autoload :Button
   autoload :ClassAttributeHandler
   autoload :Configuration
+  autoload :Flash
   autoload :IsAChecker
   autoload :Panel
   autoload :Table
-  autoload :Flash
 
   def self.configuration
     @configuration ||= BootstrapBuilders::Configuration.new
