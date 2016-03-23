@@ -1,5 +1,4 @@
 require "bootstrap_builders/engine"
-require "haml"
 require "html_gen"
 
 module BootstrapBuilders
