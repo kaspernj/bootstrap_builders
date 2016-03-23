@@ -17,18 +17,28 @@ class BootstrapBuilders::Flash
       type = :danger  if type == :error
       next unless @alert_types.include?(type)
 
-      tag_class = @class
-      tag_options = {
-        class: "bb-flash alert fade in alert-#{type} #{tag_class}"
-      }
-
       close_button = @context.content_tag(:button, @context.raw("&times;"), type: "button", class: "close", "data-dismiss" => "alert")
 
       Array(message).each do |msg|
-        text = @context.content_tag(:div, close_button + msg, tag_options)
+        text = @context.content_tag(:div, close_button + msg, class: classes(type))
         flash_messages << text if msg
       end
     end
     flash_messages.join("\n").html_safe
+  end
+
+private
+
+  def classes(type)
+    classes = []
+
+    if @class.is_a?(String)
+      classes += @class.split(/\s+/)
+    elsif @class.is_a?(Array)
+      classes += @class
+    end
+
+    classes += ["bb-flash", "alert", "alert-#{type}"]
+    classes
   end
 end

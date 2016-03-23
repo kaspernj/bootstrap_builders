@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       collection do
         get :generate_flash
         get :show_flash
+        get :show_flash_with_custom_class
       end
     end
 
