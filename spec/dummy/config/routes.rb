@@ -33,6 +33,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :flashes, only: [] do
+      collection do
+        get :generate_flash
+        get :show_flash
+      end
+    end
+
     resources :users
   end
 end

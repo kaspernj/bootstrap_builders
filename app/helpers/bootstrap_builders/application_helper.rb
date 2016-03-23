@@ -101,4 +101,9 @@ module BootstrapBuilders::ApplicationHelper
     table = BootstrapBuilders::Table.new(args.merge(context: self, blk: blk))
     table.html
   end
+
+  def bb_flash(args = {})
+    flash = BootstrapBuilders::Flash.new(args.merge(context: self))
+    flash.html
+  end
 end
