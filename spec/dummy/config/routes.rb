@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     resources :buttons, only: [] do
       collection do
+        get :arguments
         get :destroy_btn
         get :edit_btn
         get :new_btn

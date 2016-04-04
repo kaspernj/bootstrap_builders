@@ -8,12 +8,19 @@ class BootstrapBuilders::Button
       real_args = {}
     end
 
-    real_args[:url] ||= args.shift if args.first
-    real_args[:label] ||= args.shift if args.first
+    real_args[:url] ||= args.shift if args.first.is_a?(Array) || args.first.is_a?(String)
+    real_args[:label] ||= args.shift if args.first.is_a?(String)
+
+    pass_args = [:block, :lg, :md, :sm, :xs]
+    args.each do |arg|
+      real_args[arg] = true if pass_args.include?(arg)
+    end
+
     real_args
   end
 
   def initialize(args)
+    @args = args
     @label = args[:label]
     @class = args[:class]
     @url = args.fetch(:url)
@@ -21,15 +28,21 @@ class BootstrapBuilders::Button
     @context = args.fetch(:context)
     @icon = args[:icon]
     @can = args[:can]
-    @small = args[:small]
     @mini = args[:mini]
   end
 
   def classes
     unless @classes
       @classes = BootstrapBuilders::ClassAttributeHandler.new(class: ["btn", "btn-default"])
-      @classes.add("btn-xs") if @mini || @small
+      @classes.add("btn-xs") if @mini
       @classes.add(@class) if @class
+
+      size_classes = [:lg, :md, :sm, :xs]
+      size_classes.each do |size_class|
+        next unless @args[size_class]
+        btn_size_class = "btn-#{size_class}"
+        @classes.add(btn_size_class) unless @classes.include?(btn_size_class)
+      end
     end
 
     @classes

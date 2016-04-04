@@ -9,6 +9,10 @@ class BootstrapBuilders::ClassAttributeHandler
     @classes += convert_to_array(class_argument)
   end
 
+  def include?(attr_class)
+    @classes.include?(attr_class)
+  end
+
 private
 
   def convert_to_array(argument)
