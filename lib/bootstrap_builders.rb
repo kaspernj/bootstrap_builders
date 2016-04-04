@@ -8,6 +8,7 @@ module BootstrapBuilders
   autoload :Button
   autoload :ClassAttributeHandler
   autoload :Configuration
+  autoload :Flash
   autoload :IsAChecker
   autoload :Panel
   autoload :Table
