@@ -22,6 +22,10 @@ describe BootstrapBuilders::Panel do
 
     panel_table = find(".table-responsive table.table")
     expect(panel_table.text).to eq "Hello world"
+
+    # It should include the right classes
+    classes = panel_table[:class].split(/\s+/)
+    expect(classes).to include "table-striped"
   end
 
   it "allows custom classes for tables" do

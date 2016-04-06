@@ -57,9 +57,11 @@ private
   def add_table
     table_responsive = @panel.add_ele(:div, classes: ["table-responsive"])
 
+    bs_classes = BootstrapBuilders.configuration.default_table_classes - [:bordered]
+
     table_args = {
       class: "bb-panel-table",
-      bs_classes: ["table-striped", "table-hover", "bb-panel-table"],
+      bs_classes: bs_classes,
       context: @context,
       blk: @block
     }
