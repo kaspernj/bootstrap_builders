@@ -8,7 +8,13 @@ class BootstrapBuilders::Button
       real_args = {}
     end
 
-    real_args[:url] ||= args.shift if args.first.is_a?(Array) || args.first.is_a?(String)
+    is_an_active_record = BootstrapBuilders::IsAChecker.is_a?(args.first, "ActiveRecord::Base")
+    is_a_baza_model = BootstrapBuilders::IsAChecker.is_a?(args.first, "BazaModels::Model")
+
+    if args.first.is_a?(Array) || args.first.is_a?(String) || is_an_active_record || is_a_baza_model
+      real_args[:url] ||= args.shift
+    end
+
     real_args[:label] ||= args.shift if args.first.is_a?(String)
 
     pass_args = [:block, :lg, :md, :sm, :xs]
