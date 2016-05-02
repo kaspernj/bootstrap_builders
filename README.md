@@ -55,6 +55,14 @@ You can add custom classes like this:
       %td= "Test"
 ```
 
+2. A table showing a models attributes:
+
+```haml
+= bb_table do
+  %tbody
+    = bb_attribute_rows @model, [:id, :created_at, :updated_at]
+```
+
 You can change the default classes like this:
 ```ruby
 BootstrapBuilders.configuration.default_table_classes = [:striped, :hover]
