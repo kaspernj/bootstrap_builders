@@ -97,13 +97,19 @@ module BootstrapBuilders::ApplicationHelper
     button.html
   end
 
+  def bb_flash(args = {})
+    flash = BootstrapBuilders::Flash.new(args.merge(context: self))
+    flash.html
+  end
+
   def bb_table(args = {}, &blk)
     table = BootstrapBuilders::Table.new(args.merge(context: self, blk: blk))
     table.html
   end
 
-  def bb_flash(args = {})
-    flash = BootstrapBuilders::Flash.new(args.merge(context: self))
-    flash.html
+  def bb_tabs(args = {})
+    tabs = BootstrapBuilders::Tabs.new(args.merge(context: self))
+    yield tabs
+    tabs.to_html
   end
 end

@@ -12,6 +12,8 @@ module BootstrapBuilders
   autoload :IsAChecker
   autoload :Panel
   autoload :Table
+  autoload :Tab
+  autoload :Tabs
 
   def self.configuration
     @configuration ||= BootstrapBuilders::Configuration.new

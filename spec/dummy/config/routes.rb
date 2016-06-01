@@ -19,6 +19,14 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :flashes, only: [] do
+      collection do
+        get :generate_flash
+        get :show_flash
+        get :show_flash_with_custom_class
+      end
+    end
+
     resources :panels, only: [] do
       collection do
         get :panel_with_content
@@ -34,11 +42,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :flashes, only: [] do
+    resources :tabs, only: [] do
       collection do
-        get :generate_flash
-        get :show_flash
-        get :show_flash_with_custom_class
+        get :normal_tabs
       end
     end
 
