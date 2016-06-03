@@ -9,6 +9,14 @@ class BootstrapBuilders::ClassAttributeHandler
     @classes += convert_to_array(class_argument)
   end
 
+  def remove(class_argument)
+    if class_argument.is_a?(Array)
+      @classes = @classes - class_argument
+    else
+      @classes.delete(class_argument)
+    end
+  end
+
   def include?(attr_class)
     @classes.include?(attr_class)
   end
