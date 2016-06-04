@@ -11,7 +11,7 @@ class BootstrapBuilders::ClassAttributeHandler
 
   def remove(class_argument)
     if class_argument.is_a?(Array)
-      @classes = @classes - class_argument
+      @classes -= class_argument
     else
       @classes.delete(class_argument)
     end
