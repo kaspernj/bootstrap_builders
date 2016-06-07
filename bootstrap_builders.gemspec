@@ -37,5 +37,5 @@ Gem::Specification.new do |s|
 
   # Linters
   s.add_development_dependency "best_practice_project", "0.0.9"
-  s.add_development_dependency "rubocop", "0.36.0"
+  s.add_development_dependency "rubocop", "0.40.0"
 end
