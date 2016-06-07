@@ -5,14 +5,22 @@ describe BootstrapBuilders::Button do
 
   it "supports arguments given in both array and hash style" do
     visit arguments_bootstrap_builders_buttons_path
-    button = find(".bb-btn")
+    button = find(".arguments-btn")
 
-    expect(button[:class]).to eq "btn btn-default btn-lg bb-btn"
+    expect(button[:class]).to eq "btn btn-default arguments-btn btn-lg bb-btn"
     expect(button.text).to eq "Arguments label"
     expect(button[:href]).to eq "/arguments/url"
     expect(button["data-confirm"]).to eq "Are you sure?"
     expect(page).to have_http_status(:success)
     expect(current_path).to eq arguments_bootstrap_builders_buttons_path
+  end
+
+  it "supports mini as an argument" do
+    visit arguments_bootstrap_builders_buttons_path
+    button = find(".mini-btn")
+
+    expect(button[:class]).to eq "btn btn-default btn-xs mini-btn bb-btn"
+    expect(button.text).to eq ""
   end
 
   it "#bb_destroy_btn" do
