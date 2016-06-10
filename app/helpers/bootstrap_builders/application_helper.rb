@@ -111,9 +111,7 @@ module BootstrapBuilders::ApplicationHelper
   def bb_tabs(*args)
     args = BootstrapBuilders::ArgumentsParser.new(
       arguments: args,
-      argument_hash_default: {
-        context: self
-      },
+      argument_hash_default: {context: self},
       short_true_arguments: [:justified, :pills, :stacked]
     ).arguments
 
