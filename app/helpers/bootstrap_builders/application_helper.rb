@@ -108,8 +108,16 @@ module BootstrapBuilders::ApplicationHelper
     table.html
   end
 
-  def bb_tabs(args = {})
-    tabs = BootstrapBuilders::Tabs.new(args.merge(context: self))
+  def bb_tabs(*args)
+    args = BootstrapBuilders::ArgumentsParser.new(
+      arguments: args,
+      argument_hash_default: {
+        context: self
+      },
+      short_true_arguments: [:justified, :pills, :stacked]
+    ).arguments
+
+    tabs = BootstrapBuilders::Tabs.new(*args)
     yield tabs
     tabs.to_html
   end

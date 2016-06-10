@@ -1,5 +1,6 @@
 class BootstrapBuilders::Tabs
   def initialize(args)
+    @args = args
     @context = args.fetch(:context)
     @tabs = []
   end
@@ -19,7 +20,8 @@ class BootstrapBuilders::Tabs
 
   def to_html
     container = HtmlGen::Element.new(:div, inden: "  ", classes: ["bb-tabs-container"])
-    ul = container.add_ele(:ul, classes: ["nav", "nav-tabs"])
+    ul = container.add_ele(:ul, classes: nav_classes)
+    container.add_ele(:div, classes: ["clearfix"])
 
     @tabs.each do |tab|
       li = ul.add_ele(:li)
@@ -37,5 +39,21 @@ class BootstrapBuilders::Tabs
     end
 
     container.html
+  end
+
+private
+
+  def nav_classes
+    classes = ["nav"]
+    classes << "nav-stacked" if @args[:stacked]
+    classes << "nav-justified" if @args[:justified]
+
+    if @args[:pills]
+      classes << "nav-pills"
+    else
+      classes << "nav-tabs"
+    end
+
+    classes
   end
 end

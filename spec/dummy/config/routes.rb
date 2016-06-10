@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     resources :tabs, only: [] do
       collection do
         get :normal_tabs
+        get :pills
       end
     end
 

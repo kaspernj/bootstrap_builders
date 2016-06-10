@@ -5,6 +5,7 @@ module BootstrapBuilders
   extend ActiveSupport::Autoload
 
   autoload :AttributeRows
+  autoload :ArgumentsParser
   autoload :Button
   autoload :ClassAttributeHandler
   autoload :Configuration
