@@ -83,6 +83,20 @@ The classes "bb-table" and "table" are always added.
 = bb_btn "/url", "My label", :block, :lg, confirm: true
 ```
 
+### Tabs
+
+```haml
+= bb_tabs do |tabs|
+  = tabs.tab "Title" do
+    Content of tab
+```
+
+```haml
+= bb_tabs :pills, :stacked do |tabs|
+  = tabs.tab "Title", "id-of-content-container" do
+    Content of tab
+```
+
 ## Contributing to bootstrap_builders
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
