@@ -1,5 +1,5 @@
 class BootstrapBuilders::Tab
-  attr_accessor :container_html
+  attr_accessor :active, :container_html
   attr_reader :container_id, :label
 
   def initialize(args)
