@@ -67,4 +67,10 @@ describe BootstrapBuilders::Button do
     icon = find(".bb-btn-show-user i")
     expect(icon[:class]).to eq "fa fa-square-o"
   end
+
+  it "forwards the target argument" do
+    visit show_btn_bootstrap_builders_buttons_path(user_id: user.id)
+    button = find(".bb-btn-show-user")
+    expect(button[:target]).to eq "_blank"
+  end
 end

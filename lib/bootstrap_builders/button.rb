@@ -59,7 +59,16 @@ class BootstrapBuilders::Button
 
     handle_confirm_argument
 
-    @context.link_to(@url, class: classes.classes, data: @args[:data], method: @args[:method], remote: @args[:remote], title: @args[:title]) do
+    link_args = {
+      class: classes.classes,
+      data: @args[:data],
+      method: @args[:method],
+      target: @args[:target],
+      remote: @args[:remote],
+      title: @args[:title]
+    }
+
+    @context.link_to(@url, link_args) do
       html = ""
       html << @context.content_tag(:i, nil, class: ["fa", "fa-#{@icon}"]) if @icon
       html << " #{@label}" if @label && !@mini
