@@ -1,7 +1,5 @@
 $ ->
   $.bbUpdateResponseButtons = ->
-    view_port = $.bbViewPort()
-
     if $.bbViewPortOrBelow("md")
       $(".bb-btn-responsive").addClass("btn-xs")
     else
