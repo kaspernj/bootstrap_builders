@@ -35,7 +35,7 @@ $ ->
     current_size = $.bbViewPort()
     reached = false
 
-    for size, width_and_height of sizes
+    for size of sizes
       reached = true if size == current_size
 
       if given_size == size
