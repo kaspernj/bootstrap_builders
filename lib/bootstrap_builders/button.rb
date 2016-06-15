@@ -71,7 +71,11 @@ class BootstrapBuilders::Button
     @context.link_to(@url, link_args) do
       html = ""
       html << @context.content_tag(:i, nil, class: ["fa", "fa-#{@icon}"]) if @icon
-      html << " #{@label}" if @label && !@mini
+
+      if @label && !@mini
+        html << @context.content_tag(:span, " #{@label}", class: "bb-btn-label")
+      end
+
       html.strip.html_safe
     end
   end
