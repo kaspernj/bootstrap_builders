@@ -9,7 +9,7 @@ $ ->
   $.bbViewPort = ->
     width = window.innerWidth
 
-    for size, width_and_height of sizes
+    for size of sizes
       size_width = sizes[size][0]
       size_height = sizes[size][1]
       return size if width >= size_width && width < size_height
@@ -20,7 +20,7 @@ $ ->
     current_size = $.bbViewPort()
     reached = false
 
-    for size, width_and_height of sizes
+    for size of sizes
       reached = true if size == current_size
 
       if size == given_size
