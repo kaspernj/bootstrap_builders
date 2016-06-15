@@ -55,12 +55,15 @@ $ ->
     clearTimeout(resize_timeout) if resize_timeout
 
     resize_timeout = setTimeout( ->
+      $("body").removeClass("bb-view-port-xs bb-view-port-sm bb-view-port-md bb-view-port-lg")
       new_viewport = $.bbViewPort()
+      $("body").addClass("bb-view-port-" + new_viewport)
+
       if new_viewport != current_viewport
         current_viewport = new_viewport
 
         for number, viewport_callback of viewport_callbacks
           viewport_callback.call()
-    , 100)
+    , 200)
 
   $(window).resize -> $.bbViewPortOnChanged()
