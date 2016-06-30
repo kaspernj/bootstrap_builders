@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       collection do
         get :custom_classes
         get :normal_table
+        get :responsive_table
       end
     end
 
