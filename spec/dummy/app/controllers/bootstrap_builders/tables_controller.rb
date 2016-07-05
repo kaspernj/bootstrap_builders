@@ -4,4 +4,7 @@ class BootstrapBuilders::TablesController < ApplicationController
 
   def custom_classes
   end
+
+  def responsive_table
+  end
 end
