@@ -9,7 +9,7 @@ class BootstrapBuilders::Table
     buffer = @context.content_tag(:table, attributes, &@blk)
     return buffer unless @args[:responsive]
 
-    @context.content_tag(:div, buffer, class: 'table-responsive')
+    @context.content_tag(:div, buffer, class: "table-responsive")
   end
 
 private
