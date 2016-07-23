@@ -16,11 +16,11 @@ end
 
 Then add to your `application.js`:
 ```javascript
-//= require bootstrap_builders/application
+//= require bootstrap_builders
 ```
 
 Then add to your `application.css`:
-//= require bootstrap_builders/application
+//= require bootstrap_builders
 
 ## Usage
 
