@@ -16,7 +16,7 @@ describe BootstrapBuilders::Table do
     visit responsive_table_bootstrap_builders_tables_path
 
     wrapper = find(".table-responsive")
-    classes = wrapper[:class].split(/\s+/)       
+    classes = wrapper[:class].split(/\s+/)
     expect(classes).to eq ["table-responsive"]
     expect(wrapper.text).to eq "Hello world"
   end
