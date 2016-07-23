@@ -14,6 +14,14 @@ module ApplicationHelper
 end
 ```
 
+Then add to your `application.js`:
+```javascript
+//= require bootstrap_builders
+```
+
+Then add to your `application.css`:
+//= require bootstrap_builders
+
 ## Usage
 
 ### Panel
@@ -95,6 +103,7 @@ The classes "bb-table" and "table" are always added.
 = bb_tabs :pills, :stacked do |tabs|
   = tabs.tab "Title", "id-of-content-container" do
     Content of tab
+  = tabs.tab "Load on demand", ajax_url: some_path
 ```
 
 ## Contributing to bootstrap_builders
