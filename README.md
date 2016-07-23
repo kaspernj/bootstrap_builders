@@ -14,6 +14,14 @@ module ApplicationHelper
 end
 ```
 
+Then add to your `application.js`:
+```javascript
+//= require bootstrap_builders/application
+```
+
+Then add to your `application.css`:
+//= require bootstrap_builders/application
+
 ## Usage
 
 ### Panel

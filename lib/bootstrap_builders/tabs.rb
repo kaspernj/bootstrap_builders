@@ -29,6 +29,7 @@ class BootstrapBuilders::Tabs
       li = ul.add_ele(:li)
       li.add_ele(:a, str: tab.label, attr: {href: "##{tab.container_id}"}, data: {toggle: "tab"})
       li.classes << "active" if tab.active?
+      li.data[:ajax_url] = tab.ajax_url if tab.ajax_url.present?
     end
 
     tabs_content = container.add_ele(:div, classes: ["tab-content"])
