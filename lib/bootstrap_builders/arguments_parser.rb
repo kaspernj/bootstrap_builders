@@ -1,20 +1,20 @@
 class BootstrapBuilders::ArgumentsParser
-  attr_reader :arguments
+  attr_reader :arguments, :arguments_hash
 
   def initialize(args)
     @arguments = args.fetch(:arguments)
 
     if args[:argument_hash_default]
-      @argument_hash = args.fetch(:argument_hash_default)
+      @arguments_hash = args.fetch(:argument_hash_default)
     else
-      @argument_hash = {}
+      @arguments_hash = {}
     end
 
     if @arguments.last.is_a?(Hash)
-      @argument_hash = @argument_hash.merge(@arguments.pop)
+      @arguments_hash = @arguments_hash.merge(@arguments.pop)
     end
 
-    @arguments << @argument_hash
+    @arguments << @arguments_hash
 
     @short_true_arguments = args[:short_true_arguments]
     parse_short_true_arguments if @short_true_arguments
@@ -25,7 +25,7 @@ private
   def parse_short_true_arguments
     @arguments.delete_if do |argument|
       if @short_true_arguments.include?(argument)
-        @argument_hash[argument] = true
+        @arguments_hash[argument] = true
         true
       else
         false

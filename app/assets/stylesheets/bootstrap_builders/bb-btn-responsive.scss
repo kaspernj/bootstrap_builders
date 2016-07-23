@@ -1,5 +1,6 @@
-.bb-view-port-xs, .bb-view-port-sm {
-  .bb-btn-responsive .bb-btn-label {
+.bb-view-port-xs,
+.bb-view-port-sm {
+  .bb-btn-responsive[data-bb-icon="true"] .bb-btn-label {
     display: none;
   }
 }

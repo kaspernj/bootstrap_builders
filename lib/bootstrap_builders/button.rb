@@ -2,27 +2,21 @@ class BootstrapBuilders::Button
   attr_accessor :label
 
   def self.parse_url_args(args)
-    if args.last.is_a?(Hash)
-      real_args = args.pop
-    else
-      real_args = {}
-    end
+    args_parser = BootstrapBuilders::ArgumentsParser.new(
+      arguments: args,
+      short_true_arguments: [:block, :confirm, :responsive, :lg, :md, :mini, :sm, :xs]
+    )
+    args = args_parser.arguments
 
     is_an_active_record = BootstrapBuilders::IsAChecker.is_a?(args.first, "ActiveRecord::Base")
     is_a_baza_model = BootstrapBuilders::IsAChecker.is_a?(args.first, "BazaModels::Model")
 
     if args.first.is_a?(Array) || args.first.is_a?(String) || is_an_active_record || is_a_baza_model
-      real_args[:url] ||= args.shift
+      args_parser.arguments_hash[:url] ||= args.shift
     end
 
-    real_args[:label] ||= args.shift if args.first.is_a?(String)
-
-    pass_args = [:block, :confirm, :lg, :md, :mini, :sm, :xs]
-    args.each do |arg|
-      real_args[arg] = true if pass_args.include?(arg)
-    end
-
-    real_args
+    args_parser.arguments_hash[:label] ||= args.shift if args.first.is_a?(String)
+    args_parser.arguments_hash
   end
 
   def initialize(args)
@@ -35,6 +29,11 @@ class BootstrapBuilders::Button
     @icon = args[:icon]
     @can = args[:can]
     @mini = args[:mini]
+
+    @data = args[:data] || {}
+    @data[:bb_icon] = @icon.present?
+
+    @args[:title] ||= @label if @args[:responsive] && @label.present?
   end
 
   def classes
@@ -42,6 +41,7 @@ class BootstrapBuilders::Button
       @classes = BootstrapBuilders::ClassAttributeHandler.new(class: ["btn", "btn-default"])
       @classes.add("btn-xs") if @mini
       @classes.add(@class) if @class
+      @classes.add("bb-btn-responsive") if @args[:responsive]
 
       size_classes = [:lg, :md, :sm, :xs]
       size_classes.each do |size_class|
@@ -61,7 +61,7 @@ class BootstrapBuilders::Button
 
     link_args = {
       class: classes.classes,
-      data: @args[:data],
+      data: @data,
       method: @args[:method],
       target: @args[:target],
       remote: @args[:remote],
@@ -155,7 +155,6 @@ private
 
   def handle_confirm_argument
     return unless @args[:confirm]
-    @args[:data] ||= {}
-    @args[:data][:confirm] = I18n.t("are_you_sure")
+    @data[:confirm] = I18n.t("are_you_sure")
   end
 end
