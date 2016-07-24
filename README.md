@@ -20,7 +20,9 @@ Then add to your `application.js`:
 ```
 
 Then add to your `application.css`:
+```scss
 //= require bootstrap_builders
+```
 
 ## Usage
 
