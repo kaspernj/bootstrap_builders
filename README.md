@@ -108,6 +108,12 @@ The classes "bb-table" and "table" are always added.
   = tabs.tab "Load on demand", ajax_url: some_path
 ```
 
+### Flash
+
+```haml
+= bb_flash
+```
+
 ## Contributing to bootstrap_builders
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
