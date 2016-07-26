@@ -6,7 +6,10 @@ class BootstrapBuilders::Table
   end
 
   def html
-    @context.content_tag(:table, attributes, &@blk)
+    buffer = @context.content_tag(:table, attributes, &@blk)
+    return buffer unless @args[:responsive]
+
+    @context.content_tag(:div, buffer, class: "table-responsive")
   end
 
 private
