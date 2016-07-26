@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       collection do
         get :arguments
         get :destroy_btn
+        get :disabled_btn
         get :edit_btn
         get :new_btn
         get :show_btn

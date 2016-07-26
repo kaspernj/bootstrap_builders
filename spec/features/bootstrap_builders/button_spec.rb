@@ -73,4 +73,10 @@ describe BootstrapBuilders::Button do
     button = find(".bb-btn-show-user")
     expect(button[:target]).to eq "_blank"
   end
+
+  it "disables the button" do
+    visit disabled_btn_bootstrap_builders_buttons_path
+    button = find(".bb-btn")
+    expect(button[:disabled]).to eq "disabled"
+  end
 end

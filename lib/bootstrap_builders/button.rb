@@ -17,7 +17,7 @@ class BootstrapBuilders::Button
 
     real_args[:label] ||= args.shift if args.first.is_a?(String)
 
-    pass_args = [:block, :confirm, :lg, :md, :mini, :sm, :xs]
+    pass_args = [:block, :confirm, :disabled, :lg, :md, :mini, :sm, :xs]
     args.each do |arg|
       real_args[arg] = true if pass_args.include?(arg)
     end
@@ -67,6 +67,8 @@ class BootstrapBuilders::Button
       remote: @args[:remote],
       title: @args[:title]
     }
+
+    link_args[:disabled] = true if @args[:disabled]
 
     @context.link_to(@url, link_args) do
       html = ""

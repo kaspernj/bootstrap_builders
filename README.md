@@ -78,9 +78,9 @@ The classes "bb-table" and "table" are always added.
 
 ```haml
 = bb_new_btn url: [:admin, User]
-= bb_edit_btn url: [:admin, user], mini: true
+= bb_edit_btn url: [:admin, user], :mini
 = bb_destroy_btn url: [:admin, user], label: false
-= bb_btn "/url", "My label", :block, :lg, confirm: true
+= bb_btn "/url", "My label", :block, :lg, :confirm, :disabled
 ```
 
 ### Tabs
