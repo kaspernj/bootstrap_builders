@@ -108,6 +108,8 @@ The classes "bb-table" and "table" are always added.
   = tabs.tab "Load on demand", ajax_url: some_path
 ```
 
+Pre-select a tab by using the query parameter called "bb_selected_tab" like so: "?bb_selected_tab=id-of-content-container". This will also work with ajax tabs.
+
 ### Flash
 
 ```haml
