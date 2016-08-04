@@ -8,6 +8,13 @@ describe BootstrapBuilders::Tabs do
     expect(current_path).to eq normal_tabs_bootstrap_builders_tabs_path
   end
 
+  it "selects the given tab by query parameters" do
+    visit normal_tabs_bootstrap_builders_tabs_path(bb_selected_tab: "tab2")
+
+    tab2 = find("#tab2")
+    expect(tab2[:class]).to eq "tab-pane active"
+  end
+
   it "#set_default_first_active" do
     visit normal_tabs_bootstrap_builders_tabs_path
 
