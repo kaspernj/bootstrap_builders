@@ -26,7 +26,7 @@ class BootstrapBuilders::Tabs
     container.add_ele(:div, classes: ["clearfix"])
 
     @tabs.each do |tab|
-      li = ul.add_ele(:li)
+      li = ul.add_ele(:li, data: {specific_id_given: tab.specific_id_given?, tab_container_id: tab.container_id})
       li.add_ele(:a, str: tab.label, attr: {href: "##{tab.container_id}"}, data: {toggle: "tab"})
       li.classes << "active" if tab.active?
       li.data[:ajax_url] = tab.ajax_url if tab.ajax_url.present?
@@ -62,6 +62,18 @@ private
 
   def set_default_first_active
     return if @tabs.any?(&:active?)
-    @tabs.first.active = true if @tabs.any?
+
+    active_found = false
+
+    if @context.params["bb_selected_tab"].present?
+      tab = @tabs.find { |tab_i| tab_i.container_id == @context.params["bb_selected_tab"] }
+
+      if tab
+        tab.active = true
+        active_found = true
+      end
+    end
+
+    @tabs.first.active = true if @tabs.any? && !active_found
   end
 end
