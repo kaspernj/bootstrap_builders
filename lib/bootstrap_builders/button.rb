@@ -4,7 +4,9 @@ class BootstrapBuilders::Button
   def self.parse_url_args(args)
     args_parser = BootstrapBuilders::ArgumentsParser.new(
       arguments: args,
-      short_true_arguments: [:block, :confirm, :disabled, :responsive, :lg, :md, :mini, :sm, :xs]
+      short_true_arguments: [
+        :block, :confirm, :danger, :disabled, :info, :link, :primary, :responsive, :warning, :lg, :md, :mini, :sm, :xs
+      ]
     )
     args = args_parser.arguments
 
@@ -42,6 +44,12 @@ class BootstrapBuilders::Button
       @classes.add("btn-xs") if @mini
       @classes.add(@class) if @class
       @classes.add("bb-btn-responsive") if @args[:responsive]
+      @classes.add("btn-block") if @args[:block]
+      @classes.add("btn-danger") if @args[:danger]
+      @classes.add("btn-info") if @args[:info]
+      @classes.add("btn-link") if @args[:link]
+      @classes.add("btn-primary") if @args[:primary]
+      @classes.add("btn-warning") if @args[:warning]
 
       size_classes = [:lg, :md, :sm, :xs]
       size_classes.each do |size_class|
