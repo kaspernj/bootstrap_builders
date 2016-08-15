@@ -1,0 +1,3 @@
+[submodule "app/assets/javascripts/bootstrap_builders/url-builder"]
+	path = app/assets/javascripts/bootstrap_builders/url-builder
+	url = https://github.com/kaspernj/url-builder.git
