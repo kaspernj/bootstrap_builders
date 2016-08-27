@@ -21,7 +21,7 @@ class BootstrapBuilders::Tabs
   def to_html
     set_default_first_active
 
-    container = HtmlGen::Element.new(:div, inden: "  ", classes: ["bb-tabs-container"])
+    container = HtmlGen::Element.new(:div, classes: ["bb-tabs-container"])
     ul = container.add_ele(:ul, classes: nav_classes)
     container.add_ele(:div, classes: ["clearfix"])
 

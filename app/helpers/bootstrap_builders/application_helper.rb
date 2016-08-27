@@ -19,6 +19,17 @@ module BootstrapBuilders::ApplicationHelper
     BootstrapBuilders::Panel.new(args.merge(title: title, width: width, right: right, block: blk, context: self)).html
   end
 
+  def bb_progress_bar(*opts)
+    percent = opts.shift if opts.first.is_a?(Integer) || opts.first.is_a?(Float) || opts.first.is_a?(Fixnum)
+
+    args_parser = BootstrapBuilders::ArgumentsParser.new(
+      arguments: opts,
+      short_true_arguments: []
+    )
+
+    BootstrapBuilders::ProgressBar.new({percent: percent}.merge(args_parser.arguments_hash)).html
+  end
+
   def bb_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:context] = self

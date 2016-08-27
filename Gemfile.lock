@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     bootstrap_builders (0.0.15)
-      html_gen (>= 0.0.11)
+      html_gen (>= 0.0.13)
       rails (>= 4.0.0)
 
 GEM
@@ -82,7 +82,7 @@ GEM
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
-    html_gen (0.0.12)
+    html_gen (0.0.13)
       string-cases
     i18n (0.7.0)
     json (1.8.3)
