@@ -36,6 +36,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :progress_bars, only: [] do
+      collection do
+        get :normal_progress_bar
+      end
+    end
+
     resources :tables, only: [] do
       collection do
         get :custom_classes

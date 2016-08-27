@@ -12,6 +12,7 @@ module BootstrapBuilders
   autoload :Flash
   autoload :IsAChecker
   autoload :Panel
+  autoload :ProgressBar
   autoload :Table
   autoload :Tab
   autoload :Tabs

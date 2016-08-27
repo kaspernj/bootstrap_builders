@@ -4,19 +4,13 @@ module BootstrapBuilders::ApplicationHelper
   end
 
   def bb_panel(*opts, &blk)
-    title = opts.shift unless opts.first.is_a?(Hash)
-    width = opts.shift unless opts.first.is_a?(Hash)
+    panel = BootstrapBuilders::Panel.with_parsed_args(*opts, &blk)
+    panel.context = self
+    panel.html
+  end
 
-    if opts.length == 1 && opts.first.is_a?(Hash)
-      args = opts.first
-      title = args.fetch(:title) if args.key?(:title)
-      width = args[:width] if args.key?(:width)
-      right = args[:right] if args.key?(:right)
-    else
-      args = {}
-    end
-
-    BootstrapBuilders::Panel.new(args.merge(title: title, width: width, right: right, block: blk, context: self)).html
+  def bb_progress_bar(*opts)
+    BootstrapBuilders::ProgressBar.with_parsed_args(*opts)
   end
 
   def bb_btn(*args)
