@@ -1,10 +1,28 @@
 class BootstrapBuilders::Panel
+  attr_accessor :context
+
+  def self.with_parsed_args(*opts, &blk)
+    title = opts.shift unless opts.first.is_a?(Hash)
+    width = opts.shift unless opts.first.is_a?(Hash)
+
+    if opts.length == 1 && opts.first.is_a?(Hash)
+      args = opts.first
+      title = args.fetch(:title) if args.key?(:title)
+      width = args[:width] if args.key?(:width)
+      right = args[:right] if args.key?(:right)
+    else
+      args = {}
+    end
+
+    BootstrapBuilders::Panel.new(args.merge(title: title, width: width, right: right, block: blk))
+  end
+
   def initialize(args)
     @title = args.fetch(:title)
     @controls = args[:controls]
     @table = args[:table]
     @block = args.fetch(:block)
-    @context = args.fetch(:context)
+    @context = args[:context]
     @class = args[:class]
     @data = args[:data]
 
