@@ -4,6 +4,9 @@ describe BootstrapBuilders::Panel do
   it "generates a panel" do
     visit panel_with_content_bootstrap_builders_panels_path
 
+    expect(page).to have_http_status(:success)
+    expect(current_path).to eq panel_with_content_bootstrap_builders_panels_path
+
     table = find(".bb-panel")
     expect(table[:style]).to eq "width: 300;"
 
@@ -12,6 +15,9 @@ describe BootstrapBuilders::Panel do
 
     panel_body = find(".panel-body")
     expect(panel_body.text).to eq "Test"
+
+    expect(page).to have_selector ".controls-argument-button"
+    expect(page).to have_selector ".controls-button"
   end
 
   it "generates a table" do

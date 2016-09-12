@@ -1,5 +1,5 @@
 class BootstrapBuilders::Panel
-  attr_accessor :context
+  attr_accessor :context, :controls
 
   def self.with_parsed_args(*opts, &blk)
     title = opts.shift unless opts.first.is_a?(Hash)
@@ -19,15 +19,20 @@ class BootstrapBuilders::Panel
 
   def initialize(args)
     @title = args.fetch(:title)
-    @controls = args[:controls]
     @table = args[:table]
-    @block = args.fetch(:block)
     @context = args[:context]
     @class = args[:class]
     @data = args[:data]
 
+    @controls = args[:controls]
+    @controls = [@controls] unless @controls.is_a?(Array)
+
     @css = {}
     @css[:width] = args.fetch(:width) if args[:width]
+
+    @block = proc do
+      args.fetch(:block).call(self)
+    end
   end
 
   def html
@@ -41,6 +46,7 @@ class BootstrapBuilders::Panel
       add_body
     end
 
+    add_heading_controls
     html = @panel.html
 
     if html.respond_to?(:html_safe)
@@ -53,15 +59,17 @@ class BootstrapBuilders::Panel
 private
 
   def add_heading
-    heading = @panel.add_ele(:div, classes: ["panel-heading", "clearfix"])
+    @heading = @panel.add_ele(:div, classes: ["panel-heading", "clearfix"])
 
     if !@title || @title.to_s.strip.empty?
-      heading.add_ele(:div, classes: ["panel-title", "pull-left"], str_html: "&nbsp;") if @controls
+      @heading.add_ele(:div, classes: ["panel-title", "pull-left"], str_html: "&nbsp;") if @controls
     else
-      heading.add_ele(:div, classes: ["panel-title", "pull-left"], str: @title)
+      @heading.add_ele(:div, classes: ["panel-title", "pull-left"], str: @title)
     end
+  end
 
-    heading.add_ele(:div, classes: ["pull-right"], str_html: controls_content) if @controls
+  def add_heading_controls
+    @heading.add_ele(:div, classes: ["pull-right"], str_html: controls_content) if @controls
   end
 
   def controls_content

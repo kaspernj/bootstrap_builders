@@ -33,7 +33,13 @@ Then add to your `application.css`:
 3. Table if `:table` argument is given
 
 ```haml
-= bb_panel "Title of panel", right: button_content do
+= bb_panel "Title of panel", controls: button_content do
+  Content of panel
+```
+
+```haml
+= bb_panel "Title of panel", controls: button_content do |panel|
+  - panel.controls << bb_btn("#", "Another button", :mini)
   Content of panel
 ```
 
