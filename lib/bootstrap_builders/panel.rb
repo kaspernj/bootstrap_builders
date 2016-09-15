@@ -37,8 +37,9 @@ class BootstrapBuilders::Panel
 
   def html
     @panel = HtmlGen::Element.new(:div, inden: "  ", classes: container_classes, css: @css, data: @data)
+    @generated_body = @context.content_tag(:div, nil, class: ["panel-body"], &@block)
 
-    add_heading if @title || controls?
+    add_heading if heading?
 
     if @table
       add_table
@@ -84,6 +85,10 @@ private
     end
   end
 
+  def heading?
+    @title.present? || controls?
+  end
+
   def add_table
     table_responsive = @panel.add_ele(:div, classes: ["table-responsive"])
 
@@ -103,7 +108,7 @@ private
   end
 
   def add_body
-    @panel.add_html(@context.content_tag(:div, nil, class: ["panel-body"], &@block))
+    @panel.add_html(@generated_body)
   end
 
   def container_classes
