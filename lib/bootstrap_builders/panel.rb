@@ -38,7 +38,7 @@ class BootstrapBuilders::Panel
   def html
     @panel = HtmlGen::Element.new(:div, inden: "  ", classes: container_classes, css: @css, data: @data)
 
-    add_heading if @title || @controls
+    add_heading if @title || controls?
 
     if @table
       add_table
@@ -62,14 +62,18 @@ private
     @heading = @panel.add_ele(:div, classes: ["panel-heading", "clearfix"])
 
     if !@title || @title.to_s.strip.empty?
-      @heading.add_ele(:div, classes: ["panel-title", "pull-left"], str_html: "&nbsp;") if @controls
+      @heading.add_ele(:div, classes: ["panel-title", "pull-left"], str_html: "&nbsp;") if controls?
     else
       @heading.add_ele(:div, classes: ["panel-title", "pull-left"], str: @title)
     end
   end
 
   def add_heading_controls
-    @heading.add_ele(:div, classes: ["pull-right"], str_html: controls_content) if @controls
+    @heading.add_ele(:div, classes: ["pull-right"], str_html: controls_content) if controls?
+  end
+
+  def controls?
+    @controls && @controls.any?
   end
 
   def controls_content

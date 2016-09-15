@@ -46,4 +46,12 @@ describe BootstrapBuilders::Panel do
     expect(panel_table.text).to eq "Hello world"
     expect(table_classes).to eq ["table-hover", "bb-panel-table", "table", "bb-table"]
   end
+
+  it "skips the header bar when no controls or title" do
+    visit panel_with_no_header_bootstrap_builders_panels_path
+
+    expect(page).to have_http_status :success
+    expect(page).to have_selector ".bb-panel"
+    expect(page).to_not have_selector ".panel-heading"
+  end
 end
