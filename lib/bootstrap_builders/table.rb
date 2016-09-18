@@ -1,12 +1,23 @@
 class BootstrapBuilders::Table
   def initialize(args)
     @args = args
-    @blk = args.delete(:blk)
-    @context = args.delete(:context)
+
+    if args.key?(:blk)
+      @blk = args.fetch(:blk)
+    else
+      @content = args.fetch(:content)
+    end
+
+    @context = args.fetch(:context)
   end
 
   def html
-    buffer = @context.content_tag(:table, attributes, &@blk)
+    if @blk
+      buffer = @context.content_tag(:table, attributes, &@blk)
+    else
+      buffer = @context.content_tag(:table, @content, attributes)
+    end
+
     return buffer unless @args[:responsive]
 
     @context.content_tag(:div, buffer, class: "table-responsive")
