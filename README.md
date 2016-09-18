@@ -26,6 +26,13 @@ Then add to your `application.css`:
 
 ## Usage
 
+### Date picker input for SimpleForm
+
+```haml
+= f.input :activation_at, as: :bb_date_picker
+= f.input :something_at, as: :bb_date_time_picker
+```
+
 ### Panel
 
 1. Panel in all its glory with elements and classes

@@ -1,4 +1,7 @@
 require "bootstrap_builders/engine"
+require "simple_form"
+require "bb_date_picker_input"
+require "bb_date_time_picker_input"
 require "html_gen"
 
 module BootstrapBuilders
