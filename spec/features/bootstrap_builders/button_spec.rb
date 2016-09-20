@@ -54,7 +54,7 @@ describe BootstrapBuilders::Button do
     expect(button.text).to eq "Add new"
 
     icon = find(".bb-btn-new-user i")
-    expect(icon[:class]).to eq "fa fa-pencil"
+    expect(icon[:class]).to eq "fa fa-plus"
   end
 
   it "#bb_show_btn" do
