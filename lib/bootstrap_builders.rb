@@ -1,8 +1,8 @@
 require "bootstrap_builders/engine"
-require "simple_form"
-require "bb_date_picker_input"
-require "bb_date_time_picker_input"
 require "html_gen"
+
+autoload :BbDatePickerInput, "#{File.dirname(__FILE__)}/bb_date_picker_input"
+autoload :BbDateTimePickerInput, "#{File.dirname(__FILE__)}/bb_date_time_picker_input"
 
 module BootstrapBuilders
   extend ActiveSupport::Autoload

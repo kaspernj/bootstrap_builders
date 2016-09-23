@@ -1,3 +1,5 @@
+require "simple_form"
+
 # Create an input-text-field with a date-time-picker widget attached. Also makes sure the given date-time-value is being put in the correct format.
 class BbDatePickerInput < SimpleForm::Inputs::Base
   # The method that should return the widgets HTML based on the sat arguments.

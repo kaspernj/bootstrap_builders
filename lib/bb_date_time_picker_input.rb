@@ -1,3 +1,5 @@
+require "simple_form"
+
 # Create an input-text-field with a date-time-picker widget attached. Also makes sure the given date-time-value is being put in the correct format.
 class BbDateTimePickerInput < SimpleForm::Inputs::Base
   # The method that should return the widgets HTML based on the sat arguments.
@@ -40,8 +42,6 @@ class BbDateTimePickerInput < SimpleForm::Inputs::Base
       html << @builder.hidden_field("#{attribute_name}(1i)", value: year, class: "bb-date-picker-input-year")
       html << @builder.hidden_field("#{attribute_name}(2i)", value: month, class: "bb-date-picker-input-month")
       html << @builder.hidden_field("#{attribute_name}(3i)", value: day, class: "bb-date-picker-input-day")
-      hour = date.hour
-      min = date.min
       html << @builder.hidden_field("#{attribute_name}(4i)", value: hour, class: "bb-date-picker-input-hour")
       html << @builder.hidden_field("#{attribute_name}(5i)", value: min, class: "bb-date-picker-input-min")
 
