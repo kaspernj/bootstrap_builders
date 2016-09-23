@@ -20,6 +20,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :date_picker_inputs, only: [] do
+      collection do
+        get :date_picker_input
+        get :date_time_picker_input
+      end
+    end
+
     resources :flashes, only: [] do
       collection do
         get :generate_flash
