@@ -38,20 +38,9 @@ class BootstrapBuilders::Panel
   def html
     @panel = HtmlGen::Element.new(:div, inden: "  ", classes: container_classes, css: @css, data: @data)
 
-    if table?
-      @generated_body = @context.content_tag(:div, nil, class: ["table-responsive"], &@block)
-    else
-      @generated_body = @context.content_tag(:div, nil, class: ["panel-body"], &@block)
-    end
-
+    generate_body
     add_heading if heading?
-
-    if table?
-      add_table
-    else
-      add_body
-    end
-
+    add_body
     add_heading_controls
     html = @panel.html
 
@@ -98,24 +87,6 @@ private
     @table.present?
   end
 
-  def add_table
-    bs_classes = BootstrapBuilders.configuration.default_table_classes - [:bordered]
-
-    table_args = {
-      class: "bb-panel-table",
-      bs_classes: bs_classes,
-      context: @context,
-      content: @generated_body
-    }
-
-    table_args.merge!(@table) if @table.is_a?(Hash)
-
-    table = BootstrapBuilders::Table.new(table_args)
-
-    responsive = @panel.add_ele(:div, classes: ["table-responsive"])
-    responsive.add_html(table.html)
-  end
-
   def add_body
     @panel.add_html(@generated_body)
   end
@@ -130,5 +101,28 @@ private
     end
 
     classes
+  end
+
+  def generate_body
+    if table?
+      generate_body_table
+    else
+      @generated_body = @context.content_tag(:div, nil, class: ["panel-body"], &@block)
+    end
+  end
+
+  def generate_body_table
+    bs_classes = BootstrapBuilders.configuration.default_table_classes - [:bordered]
+
+    table_args = {
+      class: "bb-panel-table",
+      bs_classes: bs_classes,
+      context: @context,
+      blk: @block,
+      responsive: true
+    }
+
+    table_args.merge!(@table) if @table.is_a?(Hash)
+    @generated_body = BootstrapBuilders::Table.new(table_args).html
   end
 end

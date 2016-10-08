@@ -1,13 +1,7 @@
 class BootstrapBuilders::Table
   def initialize(args)
     @args = args
-
-    if args.key?(:blk)
-      @blk = args.fetch(:blk)
-    else
-      @content = args.fetch(:content)
-    end
-
+    @blk = args.fetch(:blk)
     @context = args.fetch(:context)
   end
 

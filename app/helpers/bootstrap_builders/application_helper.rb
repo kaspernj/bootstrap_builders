@@ -55,7 +55,7 @@ module BootstrapBuilders::ApplicationHelper
     args[:label] = t("add_new") unless args.key?(:label)
     args[:title] ||= t("new") if args[:mini]
 
-    button = BootstrapBuilders::Button.new(args.merge(icon: "pencil", context: self, can_type: :new))
+    button = BootstrapBuilders::Button.new(args.merge(icon: "plus", context: self, can_type: :new))
     button.classes.add(["bb-btn", "bb-btn-new"])
     button.classes.add("bb-btn-new-#{button.can_model_class.name.tableize.singularize}") if button.can_model_class
     button.html
