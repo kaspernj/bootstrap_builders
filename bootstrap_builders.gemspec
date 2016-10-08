@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "factory_girl_rails", "4.6.0"
   s.add_development_dependency "haml", ">= 4.0.7"
   s.add_development_dependency "spring", "1.6.4"
+  s.add_development_dependency "simple_form", "3.3.1"
   s.add_development_dependency "capybara", "2.6.2"
   s.add_development_dependency "capybara-webkit", "1.8.0"
 
