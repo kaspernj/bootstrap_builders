@@ -17,6 +17,8 @@ ActiveRecord::Migration.maintain_test_schema!
 
 Capybara.javascript_driver = :webkit
 
+Dir["#{File.dirname(__FILE__)}/factories/**/*.rb"].each { |f| require f }
+
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include FactoryGirl::Syntax::Methods

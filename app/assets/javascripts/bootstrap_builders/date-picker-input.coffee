@@ -15,7 +15,7 @@
       throw "Invalid element given." if $this.length <= 0
 
       # The hidden Rails-inputs that will get the actual values like year, month, date, hour and minute.
-      $text_ele = $("input.bb_date_picker", $this)
+      $text_ele = $("input.bb_date_picker, input.bb_date_time_picker", $this)
       $form = $(this).parents("form").first()
       $year_ele = $(".bb-date-picker-input-year", $this).first()
       $month_ele = $(".bb-date-picker-input-moth", $this).first()
@@ -44,7 +44,7 @@
     # Parses the date in the input-field and updates all the hidden Rails-inputs from the parsed values.
     updateValues: ->
       # The hidden Rails-inputs that will get the actual values like year, month, date, hour and minute.
-      $text_ele = $("input.bb_date_picker", $this)
+      $text_ele = $("input.bb_date_picker, input.bb_date_time_picker", $this)
       throw "No text element?" if $text_ele.length <= 0
 
       $form = $(this).parents("form").first()
@@ -76,7 +76,7 @@
         throw "Invalid date-format: '" + $text_ele.val() + "'."
 
       # Set the content to be a date, if this is a date-input-picker.
-      if match && $text_ele.hasClass("input_date_picker")
+      if match && $text_ele.hasClass("bb_date_picker")
         $text_ele.val(match[1] + "-" + match[2] + "-" + match[3])
 
       return $this
