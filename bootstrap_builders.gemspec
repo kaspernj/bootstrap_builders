@@ -18,12 +18,4 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 4.0.0"
   s.add_dependency "html_gen", ">= 0.0.13"
-
-  s.add_development_dependency "devise", "3.5.6"
-  s.add_development_dependency "sqlite3", "1.3.11"
-  s.add_development_dependency "cancancan", "1.13.1"
-
-  # Run development commands faster
-  s.add_development_dependency "spring-commands-rspec", "1.0.4"
-  s.add_development_dependency "spring-commands-rubocop", "0.1.0"
 end

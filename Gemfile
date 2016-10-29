@@ -5,6 +5,20 @@ source "https://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
+group :development do
+  gem "spring-commands-rspec", "1.0.4"
+  gem "spring-commands-rubocop", "0.1.0"
+end
+
+group :development, :test do
+  gem "devise", "3.5.6"
+  gem "sqlite3", "1.3.11"
+  gem "cancancan", "1.13.1"
+
+  gem "best_practice_project", "0.0.9"
+  gem "rubocop", "0.40.0"
+end
+
 group :test do
   gem "rspec-rails", "3.4.2"
   gem "factory_girl_rails", "4.6.0"
@@ -13,11 +27,6 @@ group :test do
   gem "simple_form", "3.3.1"
   gem "capybara", "2.6.2"
   gem "capybara-webkit", "1.8.0"
-end
-
-group :development, :test do
-  gem "best_practice_project", "0.0.9"
-  gem "rubocop", "0.40.0"
 end
 
 # Declare any dependencies that are still in development here instead of in
