@@ -20,8 +20,8 @@ group :development, :test do
 end
 
 group :test do
-  gem "rspec-rails", "3.4.2"
-  gem "factory_girl_rails", "4.6.0"
+  gem "rspec-rails", "3.5.2"
+  gem "factory_girl_rails", "4.7.0"
   gem "haml", ">= 4.0.7"
   gem "spring", "1.6.4"
   gem "simple_form", "3.3.1"
