@@ -23,20 +23,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3", "1.3.11"
   s.add_development_dependency "cancancan", "1.13.1"
 
-  # Test suite
-  s.add_development_dependency "rspec-rails", "3.4.2"
-  s.add_development_dependency "factory_girl_rails", "4.6.0"
-  s.add_development_dependency "haml", ">= 4.0.7"
-  s.add_development_dependency "spring", "1.6.4"
-  s.add_development_dependency "simple_form", "3.3.1"
-  s.add_development_dependency "capybara", "2.6.2"
-  s.add_development_dependency "capybara-webkit", "1.8.0"
-
   # Run development commands faster
   s.add_development_dependency "spring-commands-rspec", "1.0.4"
   s.add_development_dependency "spring-commands-rubocop", "0.1.0"
-
-  # Linters
-  s.add_development_dependency "best_practice_project", "0.0.9"
-  s.add_development_dependency "rubocop", "0.40.0"
 end
