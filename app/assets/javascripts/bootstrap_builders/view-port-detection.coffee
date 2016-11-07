@@ -67,3 +67,4 @@ $ ->
     , 200)
 
   $(window).resize -> $.bbViewPortOnChanged()
+  $.bbViewPortOnChanged()
