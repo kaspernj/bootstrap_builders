@@ -68,3 +68,4 @@ $ ->
 
   $(window).resize -> $.bbViewPortOnChanged()
   $.bbViewPortOnChanged()
+  document.addEventListener "turbolinks:load", -> $.bbViewPortOnChanged()
