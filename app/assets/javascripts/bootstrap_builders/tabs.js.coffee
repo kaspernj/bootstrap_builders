@@ -21,19 +21,24 @@ $ ->
       urlb = new UrlBuilder(window.location.href)
       urlb.queryParameters["bb_selected_tab"] = $(this).data("tab-container-id")
 
-      window.history.pushState("bb-tab-change", "", urlb.pathWithQueryParameters())
+      window.history.pushState({active_tab: li.data("tab-container-id"), event: "bb-tab-change"}, null, urlb.pathWithQueryParameters())
 
     if li.data("ajax-url") && !li.data("ajax-loaded")
       loadAjaxTab(li)
 
   # Changes the tab on 'back' and 'forward' events
-  $(window).bind "popstate", ->
-    urlb = new UrlBuilder(window.location.href)
-    selected_tab = urlb.queryParameters["bb_selected_tab"]
+  $(window).bind "popstate", (e) ->
+    if e.originalEvent.state && e.originalEvent.state.event == "bb-tab-change"
+      selected_tab = e.originalEvent.state.active_tab
+    else
+      urlb = new UrlBuilder(window.location.href)
+      selected_tab = urlb.queryParameters["bb_selected_tab"]
 
-    li = $("li[data-tab-container-id='" + selected_tab + "']")
+    selected_tab = $($(".bb-tabs-container .nav li").first()).data("tab-container-id") unless selected_tab
 
-    unless li.hasClass("active")
+    li = $("li[data-tab-container-id='" + selected_tab + "']") if selected_tab
+
+    if li && !li.hasClass("active")
       console.log("Click on LI")
       li.data("ignore-next-history-push", true)
       $("a", li).click()
