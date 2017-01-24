@@ -106,6 +106,31 @@ The classes "bb-table" and "table" are always added.
 = bb_btn "/url", "My label", :block, :lg, :confirm, :disabled
 ```
 
+### Responsive mixins
+
+Use responsive mixins to only apply certain CSS rules on specific sizes, below or above.
+
+```scss
+.some-class {
+  @include when-sm-down() {
+    width: 100px;
+  }
+
+  @include when-md-up() {
+    width: 200px;
+  }
+}
+
+@include bb-when-xs() { ... }
+@include bb-when-sm() { ... }
+@include bb-when-sm-up() { ... }
+@include bb-when-sm-down() { ... }
+@include bb-when-md() { ... }
+@include bb-when-md-up() { ... }
+@include bb-when-md-down() { ... }
+@include bb-when-lg() { ... }
+```
+
 ### Tabs
 
 ```haml
