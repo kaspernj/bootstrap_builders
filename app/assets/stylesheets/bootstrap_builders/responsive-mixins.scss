@@ -1,0 +1,31 @@
+@mixin bb-when-xs() {
+  @media (max-width: $screen-xs-max) { @content; }
+}
+
+@mixin bb-when-sm() {
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { @content; }
+}
+
+@mixin bb-when-sm-up() {
+  @media (min-width: $screen-sm-min) { @content; }
+}
+
+@mixin bb-when-sm-down() {
+  @media (max-width: $screen-sm-max) { @content; }
+}
+
+@mixin bb-when-md() {
+  @media (min-width: $screen-md-min) and (max-width: $screen-md-max) { @content; }
+}
+
+@mixin bb-when-md-up() {
+  @media (min-width: $screen-md-min) { @content; }
+}
+
+@mixin bb-when-md-down() {
+  @media (max-width: $screen-md-max) { @content; }
+}
+
+@mixin bb-when-lg() {
+  @media (min-width: $screen-lg-min) { @content; }
+}

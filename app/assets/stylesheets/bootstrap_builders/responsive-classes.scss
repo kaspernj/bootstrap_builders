@@ -1,0 +1,33 @@
+// scss-lint:disable PlaceholderInExtend
+.hidden-lg-down {
+  @extend .hidden-lg, .hidden-md, .hidden-sm, .hidden-xs;
+}
+
+.hidden-md-down {
+  @extend .hidden-md, .hidden-sm, .hidden-xs;
+}
+
+.hidden-sm-down {
+  @extend .hidden-sm, .hidden-xs;
+}
+
+.hidden-xs-down {
+  @extend .hidden-xs;
+}
+
+.hidden-lg-up {
+  @extend .hidden-lg;
+}
+
+.hidden-md-up {
+  @extend .hidden-lg, .hidden-md;
+}
+
+.hidden-sm-up {
+  @extend .hidden-lg, .hidden-md, .hidden-sm;
+}
+
+.hidden-xs-up {
+  @extend .hidden-lg, .hidden-md, .hidden-sm, .hidden-xs;
+}
+// scss-lint:enable PlaceholderInExtend
