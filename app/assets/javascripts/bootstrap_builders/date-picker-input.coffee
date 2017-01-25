@@ -24,11 +24,15 @@
     # Parses the date in the input-field and updates all the hidden Rails-inputs from the parsed values.
     updateValues: ->
       text_ele = $("input.bb_date_picker, input.bb_date_time_picker", $(@))
-      year_ele = $(".bb-date-picker-input-year", $(@)).first()
-      month_ele = $(".bb-date-picker-input-moth", $(@)).first()
-      day_ele = $(".bb-date-picker-input-day", $(@)).first()
-      hour_ele = $(".bb-date-picker-input-hour", $(@)).first()
-      min_ele = $(".bb-date-picker-input-min", $(@)).first()
+      year_ele = $(".bb-date-picker-input-year", $(@))
+      month_ele = $(".bb-date-picker-input-month", $(@))
+      day_ele = $(".bb-date-picker-input-day", $(@))
+      hour_ele = $(".bb-date-picker-input-hour", $(@))
+      min_ele = $(".bb-date-picker-input-min", $(@))
+
+      throw "Could not find year element: " + year_ele if year_ele.length <= 0
+      throw "Could not find month element: " + month_ele if month_ele.length <= 0
+      throw "Could not find month element: " + day_ele if day_ele.length <= 0
 
       if $.trim(text_ele.val()) == ""
         year_ele.val("")
