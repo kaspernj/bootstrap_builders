@@ -112,11 +112,11 @@ Use responsive mixins to only apply certain CSS rules on specific sizes, below o
 
 ```scss
 .some-class {
-  @include when-sm-down() {
+  @include bb-when-sm-down() {
     width: 100px;
   }
 
-  @include when-md-up() {
+  @include bb-when-md-up() {
     width: 200px;
   }
 }
