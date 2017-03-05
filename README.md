@@ -33,6 +33,16 @@ Then add to your `application.css`:
 = f.input :something_at, as: :bb_date_time_picker
 ```
 
+You might encounter some trouble with specs. Use the helpers:
+```ruby
+config.include BootstrapBuilders::CapybaraSpecHelpers
+```
+
+And in the test:
+```ruby
+set_bb_date_input ".subscription_start_date", 2.days.from_now.to_date
+```
+
 ### Panel
 
 1. Panel in all its glory with elements and classes
