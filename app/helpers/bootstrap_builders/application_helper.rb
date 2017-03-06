@@ -1,4 +1,13 @@
 module BootstrapBuilders::ApplicationHelper
+  def bb_attribute_row(title, value)
+    content_tag :tr do
+      parts = []
+      parts << content_tag(:th, title)
+      parts << content_tag(:td, value)
+      safe_join parts
+    end
+  end
+
   def bb_attribute_rows(model, attributes)
     BootstrapBuilders::AttributeRows.new(model: model, attributes: attributes, context: self).html
   end
