@@ -5,7 +5,7 @@ class BootstrapBuilders::Panel
     args_parser = BootstrapBuilders::ArgumentsParser.new(
       arguments: args_given,
       short_true_arguments: [
-        :table
+        :collapsable, :collapsed, :table
       ]
     )
     args = args_parser.arguments
@@ -22,6 +22,8 @@ class BootstrapBuilders::Panel
   end
 
   def initialize(args)
+    @collapsable = args[:collapsable]
+    @collapsed = args[:collapsed]
     @title = args.fetch(:title)
     @table = args[:table]
     @context = args[:context]
@@ -63,7 +65,13 @@ private
     if !@title || @title.to_s.strip.empty?
       @heading.add_ele(:div, classes: ["panel-title", "pull-left"], str_html: "&nbsp;") if controls?
     else
-      @heading.add_ele(:div, classes: ["panel-title", "pull-left"], str: @title)
+      panel_title = @heading.add_ele(:div, classes: ["panel-title", "pull-left"])
+
+      if @collapsable
+        panel_title.add_ele(:a, attr: {href: "##{collapse_id}"}, data: {toggle: "collapse"}, str: @title)
+      else
+        panel_title.add_str(@title)
+      end
     end
   end
 
@@ -92,7 +100,19 @@ private
   end
 
   def add_body
-    @panel.add_html(@generated_body)
+    if @collapsable
+      classes = ["panel-collapse", "collapse"]
+      classes << "in" unless @collapsed
+
+      collapse = @panel.add_ele(:div, classes: classes, attr: {id: collapse_id})
+      collapse.add_html(@generated_body)
+    else
+      @panel.add_html(@generated_body)
+    end
+  end
+
+  def collapse_id
+    @_collapse_id ||= "bb-collapse-#{SecureRandom.hex(4)}"
   end
 
   def container_classes
@@ -111,7 +131,7 @@ private
     if table?
       generate_body_table
     else
-      @generated_body = @context.content_tag(:div, nil, class: ["panel-body"], &@block)
+      @generated_body = @context.content_tag(:div, nil, class: "panel-body", &@block)
     end
   end
 

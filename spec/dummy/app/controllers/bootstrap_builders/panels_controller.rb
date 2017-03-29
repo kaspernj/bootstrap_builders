@@ -1,4 +1,7 @@
 class BootstrapBuilders::PanelsController < ApplicationController
+  def panel_with_collapse
+  end
+
   def panel_with_content
   end
 

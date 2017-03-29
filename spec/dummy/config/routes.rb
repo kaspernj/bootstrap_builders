@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
     resources :panels, only: [] do
       collection do
+        get :panel_with_collapse
         get :panel_with_content
         get :panel_with_no_header
         get :panel_with_table
