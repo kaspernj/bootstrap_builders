@@ -54,4 +54,18 @@ describe BootstrapBuilders::Panel do
     expect(page).to have_selector ".bb-panel"
     expect(page).to_not have_selector ".panel-heading"
   end
+
+  it "generates collapse elements" do
+    visit panel_with_collapse_bootstrap_builders_panels_path
+
+    expect(page).to have_http_status :success
+    expect(page).to have_selector ".panel-collapse.collapse.in"
+  end
+
+  it "generates collapse elements" do
+    visit panel_with_collapse_bootstrap_builders_panels_path(collapsed: true)
+
+    expect(page).to have_http_status :success
+    expect(page).to have_selector ".panel-collapse.collapse:not(.in)"
+  end
 end
