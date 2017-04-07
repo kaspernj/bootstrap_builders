@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     bootstrap_builders (0.0.35)
-      html_gen (>= 0.0.13)
+      html_gen (>= 0.0.15)
       rails (>= 4.0.0)
 
 GEM
@@ -63,7 +63,7 @@ GEM
     capybara-webkit (1.8.0)
       capybara (>= 2.3.0, < 2.7.0)
       json
-    concurrent-ruby (1.0.4)
+    concurrent-ruby (1.0.5)
     devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -82,7 +82,7 @@ GEM
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
-    html_gen (0.0.13)
+    html_gen (0.0.15)
       string-cases
     i18n (0.7.0)
     json (1.8.3)
