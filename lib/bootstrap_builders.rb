@@ -10,6 +10,7 @@ module BootstrapBuilders
   autoload :AttributeRows
   autoload :ArgumentsParser
   autoload :Button
+  autoload :ButtonDropDown
   autoload :CapybaraSpecHelpers
   autoload :ClassAttributeHandler
   autoload :Configuration
