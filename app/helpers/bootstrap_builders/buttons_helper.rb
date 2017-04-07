@@ -7,6 +7,14 @@ module BootstrapBuilders::ButtonsHelper
     button.html
   end
 
+  def bb_btn_drop_down(*args)
+    btn_drop_down = BootstrapBuilders::ButtonDropDown.new(*args)
+    btn_drop_down.view_context = self
+
+    yield btn_drop_down
+    btn_drop_down.html
+  end
+
   def bb_edit_btn(*args)
     args = BootstrapBuilders::Button.parse_url_args(args)
     args[:label] = t("edit") unless args.key?(:label)
