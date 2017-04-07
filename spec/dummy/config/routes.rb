@@ -20,6 +20,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :button_drop_downs, only: [] do
+      collection do
+        get :basic
+      end
+    end
+
     resources :date_picker_inputs, only: [] do
       collection do
         get :date_picker_input
