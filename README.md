@@ -1,5 +1,7 @@
 # BootstrapBuilders
 
+The following examples are shown in HAML syntax but the project can of course be used with ERB and Slim as well.
+
 ## Install
 
 Add to your Gemfile and bundle:
@@ -75,6 +77,12 @@ You can add custom classes like this:
   %tbody
     %tr
       %td Test
+```
+
+You can make the panel collapsed with the title functioning as the open toggle like this:
+```haml
+= bb_panel "Title", :collapsable, :collapsed do
+  Content
 ```
 
 ### Table
