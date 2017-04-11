@@ -51,7 +51,7 @@ class BootstrapBuilders::ButtonDropDown
       a_href = li.add_ele(:a, attr: {href: url}, classes: BootstrapBuilders::ClassAttributeHandler.short(button[:class]))
 
       a_href.data[:confirm] = I18n.t("are_you_sure") if button[:confirm]
-      a_href.data[:method] = button[:method]
+      a_href.data[:method] = button[:method] if button[:method].present?
       a_href.data.merge!(button[:data]) if button[:data]
 
       if button[:icon]
