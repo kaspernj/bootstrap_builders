@@ -24,6 +24,7 @@ class BootstrapBuilders::Flash
         flash_messages << text if msg
       end
     end
+    @context.flash.clear
     flash_messages.join("\n").html_safe
   end
 
