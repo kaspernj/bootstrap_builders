@@ -57,6 +57,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :responsive_elements, only: :index
+
     resources :tables, only: [] do
       collection do
         get :custom_classes
