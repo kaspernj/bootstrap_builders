@@ -14,7 +14,9 @@ group :development, :test do
   gem "best_practice_project", "0.0.9"
   gem "cancancan", "1.13.1"
   gem "devise", "3.5.6"
+  gem "haml-rails", ">= 1.0.0"
   gem "rubocop", "0.40.0"
+  gem "sass-rails", "5.0.6"
   gem "sqlite3", "1.3.11"
 end
 
@@ -22,7 +24,6 @@ group :test do
   gem "capybara", "2.6.2"
   gem "capybara-webkit", "1.8.0"
   gem "factory_girl_rails", "4.7.0"
-  gem "haml", ">= 4.0.7"
   gem "rspec-rails", "3.5.2"
   gem "simple_form", "3.3.1"
   gem "spring", "1.6.4"
