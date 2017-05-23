@@ -1,25 +1,27 @@
 // scss-lint:disable PlaceholderInExtend
+// scss-lint:disable ImportantRule
 .hidden-md-down {
   @media (max-width: $screen-md-max) {
-    display: none;
+    display: none !important;
   }
 }
 
 .hidden-sm-down {
   @media (max-width: $screen-sm-max) {
-    display: none;
+    display: none !important;
   }
 }
 
 .hidden-md-up {
   @media (min-width: $screen-md-min) {
-    display: none;
+    display: none !important;
   }
 }
 
 .hidden-sm-up {
   @media (min-width: $screen-sm-min) {
-    display: none;
+    display: none !important;
   }
 }
+// scss-lint:enable ImportantRule
 // scss-lint:enable PlaceholderInExtend
