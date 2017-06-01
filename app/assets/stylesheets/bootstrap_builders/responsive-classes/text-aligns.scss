@@ -1,0 +1,110 @@
+// LEFT
+@include bb-when-xs() {
+  .text-left-xs {
+    text-align: left;
+  }
+}
+
+@include bb-when-sm-up() {
+  .text-left-sm-up {
+    text-align: left;
+  }
+}
+
+@include bb-when-sm-down() {
+  .text-left-sm-down {
+    text-align: left;
+  }
+}
+
+@include bb-when-md-up() {
+  .text-left-md-up {
+    text-align: left;
+  }
+}
+
+@include bb-when-md-down() {
+  .text-left-md-down {
+    text-align: left;
+  }
+}
+
+@include bb-when-lg() {
+  .text-left-lg {
+    text-align: left;
+  }
+}
+
+// CENTER
+@include bb-when-xs() {
+  .text-center-xs {
+    text-align: center;
+  }
+}
+
+@include bb-when-sm-up() {
+  .text-center-sm-up {
+    text-align: center;
+  }
+}
+
+@include bb-when-sm-down() {
+  .text-center-sm-down {
+    text-align: center;
+  }
+}
+
+@include bb-when-md-up() {
+  .text-center-md-up {
+    text-align: center;
+  }
+}
+
+@include bb-when-md-down() {
+  .text-center-md-down {
+    text-align: center;
+  }
+}
+
+@include bb-when-lg() {
+  .text-center-lg {
+    text-align: center;
+  }
+}
+
+// RIGHT
+@include bb-when-xs() {
+  .text-right-xs {
+    text-align: right;
+  }
+}
+
+@include bb-when-sm-up() {
+  .text-right-sm-up {
+    text-align: right;
+  }
+}
+
+@include bb-when-sm-down() {
+  .text-right-sm-down {
+    text-align: right;
+  }
+}
+
+@include bb-when-md-up() {
+  .text-right-md-up {
+    text-align: right;
+  }
+}
+
+@include bb-when-md-down() {
+  .text-right-md-down {
+    text-align: right;
+  }
+}
+
+@include bb-when-lg() {
+  .text-right-lg {
+    text-align: right;
+  }
+}
