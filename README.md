@@ -149,6 +149,16 @@ Use responsive mixins to only apply certain CSS rules on specific sizes, below o
 @include bb-when-lg() { ... }
 ```
 
+### Responsive classes
+
+```scss
+.text-align-left-xs
+.text-align-right-sm-up
+.text-align-center-md-down
+```
+
+And so on...
+
 ### Tabs
 
 ```haml
