@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bootstrap_builders (0.0.41)
+    bootstrap_builders (0.0.42)
       html_gen (>= 0.0.15)
       rails (>= 4.0.0)
 
@@ -100,7 +100,7 @@ GEM
     json (1.8.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    mail (2.6.5)
+    mail (2.6.6)
       mime-types (>= 1.16, < 4)
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
