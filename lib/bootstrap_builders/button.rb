@@ -40,10 +40,11 @@ class BootstrapBuilders::Button
 
   def classes
     unless @classes
-      @classes = BootstrapBuilders::ClassAttributeHandler.new(class: ["btn", "btn-default"])
+      @classes = BootstrapBuilders::ClassAttributeHandler.new(class: ["btn"])
       @classes.add("btn-xs") if @mini
       @classes.add(@class) if @class
       @classes.add("bb-btn-responsive") if @args[:responsive]
+      add_default_as_default
       @classes.add("btn-block") if @args[:block]
       @classes.add("btn-danger") if @args[:danger]
       @classes.add("btn-info") if @args[:info]
@@ -101,6 +102,10 @@ class BootstrapBuilders::Button
   end
 
 private
+
+  def add_default_as_default
+    @classes.add("btn-default") if !@args[:danger] && !@args[:info] && !@args[:primary] && !@args[:warning]
+  end
 
   def can?
     authorize_object = can_object

@@ -7,7 +7,7 @@ describe BootstrapBuilders::Button do
     visit arguments_bootstrap_builders_buttons_path
     button = find(".arguments-btn")
 
-    expect(button[:class]).to eq "btn btn-default arguments-btn btn-block btn-danger btn-info btn-link btn-primary btn-warning btn-lg bb-btn"
+    expect(button[:class]).to eq "btn arguments-btn btn-block btn-danger btn-info btn-link btn-primary btn-warning btn-lg bb-btn"
     expect(button.text).to eq "Arguments label"
     expect(button[:href]).to eq "/arguments/url"
     expect(button["data-confirm"]).to eq "Are you sure?"
@@ -19,7 +19,7 @@ describe BootstrapBuilders::Button do
     visit arguments_bootstrap_builders_buttons_path
     button = find(".mini-btn")
 
-    expect(button[:class]).to eq "btn btn-default btn-xs mini-btn bb-btn"
+    expect(button[:class]).to eq "btn btn-xs mini-btn btn-default bb-btn"
     expect(button.text).to eq ""
   end
 
