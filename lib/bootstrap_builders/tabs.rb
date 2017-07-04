@@ -36,7 +36,6 @@ class BootstrapBuilders::Tabs
 
     @tabs.each do |tab|
       tab_content = tabs_content.add_ele(:div, classes: ["tab-pane"], attr: {id: tab.container_id})
-      tab_content.add_ele(:h3, str: tab.label)
       tab_content.add_html(tab.container_html)
       tab_content.classes << "active" if tab.active?
     end
