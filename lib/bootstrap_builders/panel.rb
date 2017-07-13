@@ -70,7 +70,7 @@ private
       if @collapsable
         panel_title.add_ele(:a, attr: {href: "##{collapse_id}"}, data: {toggle: "collapse"}, str: @title)
       else
-        panel_title.add_str(@title)
+        panel_title.add_html_if_safe(@title)
       end
     end
   end
