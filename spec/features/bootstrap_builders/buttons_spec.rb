@@ -19,7 +19,7 @@ describe BootstrapBuilders::Button do
     visit arguments_bootstrap_builders_buttons_path
     button = find(".mini-btn")
 
-    expect(button[:class]).to eq "btn btn-xs mini-btn btn-default bb-btn"
+    expect(button[:class]).to eq "btn bb-btn-mini btn-xs mini-btn btn-default bb-btn"
     expect(button.text).to eq ""
   end
 
