@@ -41,7 +41,7 @@ class BootstrapBuilders::Button
   def classes
     unless @classes
       @classes = BootstrapBuilders::ClassAttributeHandler.new(class: ["btn"])
-      @classes.add("btn-xs") if @mini
+      handle_mini_argument
       @classes.add(@class) if @class
       @classes.add("bb-btn-responsive") if @args[:responsive]
       add_default_as_default
@@ -171,5 +171,10 @@ private
   def handle_confirm_argument
     return unless @args[:confirm]
     @data[:confirm] = I18n.t("are_you_sure")
+  end
+
+  def handle_mini_argument
+    return unless @mini
+    @classes.add(["bb-btn-mini", "btn-xs"])
   end
 end
