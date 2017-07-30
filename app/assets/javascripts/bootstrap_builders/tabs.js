@@ -1,48 +1,61 @@
-$ ->
-  # Used to load dynamic content of a tab
-  loadAjaxTab = (li) ->
+$(document),.ready(function() {
+  // Used to load dynamic content of a tab
+  loadAjaxTab = function(li) {
     link = $("a", li)
     content_id = link.attr("href").substring(1, 999)
     content = $(".bb-tabs-container #" + content_id + " .bb-tab-container")
 
     li.data("ajax-loaded", true)
-    content.fadeOut 0, ->
-      $.get li.data("ajax-url"), (data) ->
+    content.fadeOut(0, function() {
+      $.get(li.data("ajax-url"), function(data) {
         content.html(data)
         content.fadeIn "fast"
+      })
+    })
+  }
 
-  # Loads the dynamic content of a tab when activated and sets the URL to the tab ID
-  $("body").on "click", ".bb-tabs-container .nav li", ->
+  #//Loads the dynamic content of a tab when activated and sets the URL to the tab ID
+  $("body").on("click", ".bb-tabs-container .nav li", function() {
     li = $(this)
 
-    if li.data("ignore-next-history-push")
+    if (li.data("ignore-next-history-push")) {
       li.data("ignore-next-history-push", null)
-    else if li.data("specific-id-given")
+    } else if(li.data("specific-id-given")) {
       urlb = new UrlBuilder(window.location.href)
       urlb.queryParameters["bb_selected_tab"] = $(this).data("tab-container-id")
 
       window.history.pushState({active_tab: li.data("tab-container-id"), event: "bb-tab-change"}, null, urlb.pathWithQueryParameters())
+    }
 
-    if li.data("ajax-url") && !li.data("ajax-loaded")
+    if (li.data("ajax-url") && !li.data("ajax-loaded")) {
       loadAjaxTab(li)
+    }
+  })
 
-  # Changes the tab on 'back' and 'forward' events
-  $(window).bind "popstate", (e) ->
-    if e.originalEvent.state && e.originalEvent.state.event == "bb-tab-change"
+  // Changes the tab on 'back' and 'forward' events
+  $(window).bind("popstate", function(e) {
+    if (e.originalEvent.state && e.originalEvent.state.event == "bb-tab-change") {
       selected_tab = e.originalEvent.state.active_tab
-    else
+    } else {
       urlb = new UrlBuilder(window.location.href)
       selected_tab = urlb.queryParameters["bb_selected_tab"]
+    }
 
     selected_tab = $($(".bb-tabs-container .nav li").first()).data("tab-container-id") unless selected_tab
 
     li = $("li[data-tab-container-id='" + selected_tab + "']") if selected_tab
 
-    if li && !li.hasClass("active")
+    if (li && !li.hasClass("active")) {
       console.log("Click on LI")
       li.data("ignore-next-history-push", true)
       $("a", li).click()
+    }
+  })
 
-  # Makes sure the correct tab is loaded on page load
+  // Makes sure the correct tab is loaded on page load
   active_tab = $(".bb-tabs-container .nav li.active[data-ajax-url]")
-  loadAjaxTab(active_tab) if active_tab.length > 0
+
+  if (active_tab.length > 0) {
+    loadAjaxTab(active_tab)
+  }
+})
