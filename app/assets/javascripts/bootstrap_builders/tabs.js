@@ -1,4 +1,4 @@
-$(document),.ready(function() {
+$(document).ready(function() {
   // Used to load dynamic content of a tab
   loadAjaxTab = function(li) {
     link = $("a", li)
@@ -9,12 +9,12 @@ $(document),.ready(function() {
     content.fadeOut(0, function() {
       $.get(li.data("ajax-url"), function(data) {
         content.html(data)
-        content.fadeIn "fast"
+        content.fadeIn("fast")
       })
     })
   }
 
-  #//Loads the dynamic content of a tab when activated and sets the URL to the tab ID
+  //Loads the dynamic content of a tab when activated and sets the URL to the tab ID
   $("body").on("click", ".bb-tabs-container .nav li", function() {
     li = $(this)
 
@@ -41,9 +41,13 @@ $(document),.ready(function() {
       selected_tab = urlb.queryParameters["bb_selected_tab"]
     }
 
-    selected_tab = $($(".bb-tabs-container .nav li").first()).data("tab-container-id") unless selected_tab
+    if (!selected_tab) {
+      selected_tab = $($(".bb-tabs-container .nav li").first()).data("tab-container-id")
+    }
 
-    li = $("li[data-tab-container-id='" + selected_tab + "']") if selected_tab
+    if (selected_tab) {
+      li = $("li[data-tab-container-id='" + selected_tab + "']")
+    }
 
     if (li && !li.hasClass("active")) {
       console.log("Click on LI")

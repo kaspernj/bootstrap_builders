@@ -1,4 +1,4 @@
-$(document(function() {
+$(document).ready(function() {
   sizes = {
     xs: [0, 767],
     sm: [768, 991],
@@ -9,7 +9,7 @@ $(document(function() {
   $.bbViewPort = function() {
     width = window.innerWidth
 
-    for(size of sizes) {
+    for(size in sizes) {
       size_width = sizes[size][0]
       size_height = sizes[size][1]
 
@@ -25,7 +25,7 @@ $(document(function() {
     current_size = $.bbViewPort()
     reached = false
 
-    for(size of sizes) {
+    for(size in sizes) {
       if (size == current_size) {
         reached = true
       }
@@ -46,7 +46,7 @@ $(document(function() {
     current_size = $.bbViewPort()
     reached = false
 
-    for(size of sizes) {
+    for(size in sizes) {
       if (size == current_size) {
         reached = true
       }
@@ -64,14 +64,18 @@ $(document(function() {
   }
 
   viewport_callbacks = []
-  $.bbViewPortChange = (func) -> viewport_callbacks.push(func)
+  $.bbViewPortChange = function(func) {
+    viewport_callbacks.push(func)
+  }
 
   resize_timeout = null
   current_viewport = $.bbViewPort()
   $.bbViewPortOnChanged = function() {
-    clearTimeout(resize_timeout) if resize_timeout
+    if (resize_timeout) {
+      clearTimeout(resize_timeout)
+    }
 
-    resize_timeout = setTimeout(function {
+    resize_timeout = setTimeout(function() {
       $("body").removeClass("bb-view-port-xs bb-view-port-sm bb-view-port-md bb-view-port-lg")
       new_viewport = $.bbViewPort()
       $("body").addClass("bb-view-port-" + new_viewport)
@@ -87,7 +91,12 @@ $(document(function() {
     }, 200)
   }
 
-  $(window).resize -> $.bbViewPortOnChanged()
+  $(window).resize(function() {
+    $.bbViewPortOnChanged()
+  })
+
   $.bbViewPortOnChanged()
-  document.addEventListener "turbolinks:load", -> $.bbViewPortOnChanged()
+  document.addEventListener("turbolinks:load", function() {
+    $.bbViewPortOnChanged()
+  })
 })
