@@ -10,7 +10,6 @@ require "rspec/rails"
 require "cancancan"
 require "devise"
 require "factory_girl_rails"
-require "haml"
 require "simple_form"
 
 ActiveRecord::Migration.maintain_test_schema!
