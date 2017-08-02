@@ -30,9 +30,9 @@ Then add to your `application.css`:
 
 ### Date picker input for SimpleForm
 
-```haml
-= f.input :activation_at, as: :bb_date_picker
-= f.input :something_at, as: :bb_date_time_picker
+```erb
+<%= f.input :activation_at, as: :bb_date_picker %>
+<%= f.input :something_at, as: :bb_date_time_picker %>
 ```
 
 You might encounter some trouble with specs. Use the helpers:
@@ -51,57 +51,71 @@ set_bb_date_input ".subscription_start_date", 2.days.from_now.to_date
 2. Controls if `:right` argument is given
 3. Table if `:table` argument is given
 
-```haml
-= bb_panel "Title of panel", controls: button_content do
+```erb
+<%= bb_panel "Title of panel", controls: button_content do %>
   Content of panel
+<% end %>
 ```
 
-```haml
-= bb_panel "Title of panel", controls: button_content do |panel|
-  - panel.controls << bb_btn("#", "Another button", :mini)
+```erb
+<%= bb_panel "Title of panel", controls: button_content do |panel| %>
+  <% panel.controls << bb_btn("#", "Another button", :mini) %>
   Content of panel
+<% end %>
 ```
 
 ### Panel with a table
 
-```haml
-= bb_panel "Title of panel", table: true do
-  %tbody
-    %tr
-      %td= "Test"
+```erb
+<%= bb_panel "Title of panel", table: true do %>
+  <tbody>
+    <tr>
+      <td>Test</td>
+    </tr>
+  </tbody>
+<% end %>
 ```
 
 You can add custom classes like this:
-```haml
-= bb_panel "Title of panel", table: {bs_classes: [:striped]} do
-  %tbody
-    %tr
-      %td Test
+```erb
+<%= bb_panel "Title of panel", table: {bs_classes: [:striped]} do %>
+  <tbody>
+    <tr>
+      <td>Test</td>
+    </tr>
+  </tbody>
+<% end %>
 ```
 
 You can make the panel collapsed with the title functioning as the open toggle like this:
-```haml
-= bb_panel "Title", :collapsable, :collapsed do
+```erb
+<%= bb_panel "Title", :collapsable, :collapsed do %>
   Content
+<% end %>
 ```
 
 ### Table
 
 1. Adds Bootstrap classes: "table", "table-hover", "table-striped"
 
-```haml
-= bb_table do
-  %tbody
-    %tr
-      %td= "Test"
+```erb
+<%= bb_table do %>
+  <tbody>
+    <tr>
+      <td>Test</td>
+    </tr>
+  </tbody>
+<% end %>
 ```
 
 2. A table showing a models attributes:
 
-```haml
-= bb_table do
-  %tbody
-    = bb_attribute_rows @model, [:id, :created_at, :updated_at]
+```erb
+<%= bb_table do %>
+  <tbody>
+    <%= bb_attribute_rows @model, [:id, :created_at, :updated_at] %>
+  </tbody>
+<% end %>
 ```
 
 You can change the default classes like this:
@@ -117,11 +131,11 @@ The classes "bb-table" and "table" are always added.
 2. Adds labels automatically
 3. Doesn't show button if CanCan doesn't allow it
 
-```haml
-= bb_new_btn url: [:admin, User]
-= bb_edit_btn url: [:admin, user], :mini
-= bb_destroy_btn url: [:admin, user], label: false
-= bb_btn "/url", "My label", :block, :lg, :confirm, :disabled
+```erb
+<%= bb_new_btn url: [:admin, User] %>
+<%= bb_edit_btn url: [:admin, user], :mini %>
+<%= bb_destroy_btn url: [:admin, user], label: false %>
+<%= bb_btn "/url", "My label", :block, :lg, :confirm, :disabled %>
 ```
 
 ### Responsive mixins
@@ -161,25 +175,29 @@ And so on...
 
 ### Tabs
 
-```haml
-= bb_tabs do |tabs|
-  = tabs.tab "Title" do
+```erb
+<%= bb_tabs do |tabs| %>
+  <%= tabs.tab "Title" do %>
     Content of tab
+  <% end %>
+<% end %>
 ```
 
-```haml
-= bb_tabs :pills, :stacked do |tabs|
-  = tabs.tab "Title", "id-of-content-container" do
+```erb
+<%= bb_tabs :pills, :stacked do |tabs| %>
+  <%= tabs.tab "Title", "id-of-content-container" do %>
     Content of tab
-  = tabs.tab "Load on demand", ajax_url: some_path
+  <% end %>
+  <%= tabs.tab "Load on demand", ajax_url: some_path %>
+<% end %>
 ```
 
 Pre-select a tab by using the query parameter called "bb_selected_tab" like so: "?bb_selected_tab=id-of-content-container". This will also work with ajax tabs.
 
 ### Flash
 
-```haml
-= bb_flash
+```erb
+<%= bb_flash %>
 ```
 
 ## Contributing to bootstrap_builders

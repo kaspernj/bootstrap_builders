@@ -11,7 +11,6 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 require "bootstrap_builders"
 
-require "haml-rails"
 require "sass-rails"
 
 module Dummy; end
