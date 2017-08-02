@@ -1,0 +1,4 @@
+<%= bb_panel("Test title", 300, controls: bb_btn("#", "Test controls argument", class: "controls-argument-button")) do |panel| %>
+  <% panel.controls << bb_btn("#", "Test controls object", class: "controls-button") %>
+  Test
+<% end %>
