@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  sizes = {
+  var sizes = {
     xs: [0, 767],
     sm: [768, 991],
     md: [992, 1199],
@@ -7,11 +7,11 @@ $(document).ready(function() {
   }
 
   $.bbViewPort = function() {
-    width = window.innerWidth
+    var width = window.innerWidth
 
-    for(size in sizes) {
-      size_width = sizes[size][0]
-      size_height = sizes[size][1]
+    for(var size in sizes) {
+      var size_width = sizes[size][0]
+      var size_height = sizes[size][1]
 
       if (width >= size_width && width < size_height) {
         return size
@@ -22,10 +22,10 @@ $(document).ready(function() {
   }
 
   $.bbViewPortOrAbove = function(given_size) {
-    current_size = $.bbViewPort()
-    reached = false
+    var current_size = $.bbViewPort()
+    var reached = false
 
-    for(size in sizes) {
+    for(var size in sizes) {
       if (size == current_size) {
         reached = true
       }
@@ -43,10 +43,10 @@ $(document).ready(function() {
   }
 
   $.bbViewPortOrBelow = function(given_size) {
-    current_size = $.bbViewPort()
-    reached = false
+    var current_size = $.bbViewPort()
+    var reached = false
 
-    for(size in sizes) {
+    for(var size in sizes) {
       if (size == current_size) {
         reached = true
       }
@@ -63,13 +63,13 @@ $(document).ready(function() {
     throw "Invalid size: " + given_size
   }
 
-  viewport_callbacks = []
+  var viewport_callbacks = []
   $.bbViewPortChange = function(func) {
     viewport_callbacks.push(func)
   }
 
-  resize_timeout = null
-  current_viewport = $.bbViewPort()
+  var resize_timeout = null
+  var current_viewport = $.bbViewPort()
   $.bbViewPortOnChanged = function() {
     if (resize_timeout) {
       clearTimeout(resize_timeout)
@@ -77,7 +77,7 @@ $(document).ready(function() {
 
     resize_timeout = setTimeout(function() {
       $("body").removeClass("bb-view-port-xs bb-view-port-sm bb-view-port-md bb-view-port-lg")
-      new_viewport = $.bbViewPort()
+      var new_viewport = $.bbViewPort()
       $("body").addClass("bb-view-port-" + new_viewport)
 
       if (new_viewport != current_viewport) {

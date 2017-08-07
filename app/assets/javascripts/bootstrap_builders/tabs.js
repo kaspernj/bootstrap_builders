@@ -1,19 +1,18 @@
-$(document).ready(function() {
-  // Used to load dynamic content of a tab
-  loadAjaxTab = function(li) {
-    link = $("a", li)
-    content_id = link.attr("href").substring(1, 999)
-    content = $(".bb-tabs-container #" + content_id + " .bb-tab-container")
+function loadAjaxTab(li) {
+  link = $("a", li)
+  content_id = link.attr("href").substring(1, 999)
+  content = $(".bb-tabs-container #" + content_id + " .bb-tab-container")
 
-    li.data("ajax-loaded", true)
-    content.fadeOut(0, function() {
-      $.get(li.data("ajax-url"), function(data) {
-        content.html(data)
-        content.fadeIn("fast")
-      })
+  li.data("ajax-loaded", true)
+  content.fadeOut(0, function() {
+    $.get(li.data("ajax-url"), function(data) {
+      content.html(data)
+      content.fadeIn("fast")
     })
-  }
+  })
+}
 
+$(document).ready(function() {
   //Loads the dynamic content of a tab when activated and sets the URL to the tab ID
   $("body").on("click", ".bb-tabs-container .nav li", function() {
     li = $(this)
@@ -57,7 +56,7 @@ $(document).ready(function() {
   })
 
   // Makes sure the correct tab is loaded on page load
-  active_tab = $(".bb-tabs-container .nav li.active[data-ajax-url]")
+  var active_tab = $(".bb-tabs-container .nav li.active[data-ajax-url]")
 
   if (active_tab.length > 0) {
     loadAjaxTab(active_tab)
