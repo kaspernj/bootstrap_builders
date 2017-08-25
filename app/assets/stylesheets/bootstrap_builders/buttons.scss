@@ -1,3 +1,114 @@
+@mixin bb-button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+  padding: $padding-vertical $padding-horizontal !important;
+  font-size: $font-size !important;
+  line-height: $line-height !important;
+  border-radius: $border-radius !important;
+}
+
 .bb-btn-mini {
   padding: 4px;
+}
+
+// btn-xs-on-xs
+.btn-xs-on-xs {
+  @include bb-when-xs() {
+    @include bb-button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+// btn-xs-on-sm
+.btn-xs-on-sm {
+  @include bb-when-sm() {
+    @include bb-button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+.btn-xs-on-sm-down {
+  @include bb-when-sm-down() {
+    @include bb-button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+.btn-xs-on-sm-up {
+  @include bb-when-sm-up() {
+    @include bb-button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+// btn-xs-on-md
+.btn-xs-on-md {
+  @include bb-when-md() {
+    @include bb-button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+.btn-xs-on-md-down {
+  @include bb-when-md-down() {
+    @include bb-button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+.btn-xs-on-md-up {
+  @include bb-when-md-up() {
+    @include bb-button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+// btn-xs-on-lg
+.btn-xs-on-lg {
+  @include bb-when-lg() {
+    @include bb-button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+// btn-sm
+.btn-sm-on-xs {
+  @include bb-when-sm() {
+    @include bb-button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+// btn-sm-on-sm
+.btn-sm-on-sm {
+  @include bb-when-sm() {
+    @include bb-button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+.btn-sm-on-sm-down {
+  @include bb-when-sm-down() {
+    @include bb-button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+.btn-sm-on-sm-up {
+  @include bb-when-sm-up() {
+    @include bb-button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+// btn-sm-on-md
+.btn-sm-on-md {
+  @include bb-when-md() {
+    @include bb-button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+.btn-sm-on-md-down {
+  @include bb-when-md-down() {
+    @include bb-button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+.btn-sm-on-md-up {
+  @include bb-when-md-up() {
+    @include bb-button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
+}
+
+// btn-sm-on-lg
+.btn-sm-on-lg {
+  @include bb-when-lg() {
+    @include bb-button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+  }
 }
