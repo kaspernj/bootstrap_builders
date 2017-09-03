@@ -1,7 +1,7 @@
 function loadAjaxTab(li) {
-  link = $("a", li)
-  content_id = link.attr("href").substring(1, 999)
-  content = $(".bb-tabs-container #" + content_id + " .bb-tab-container")
+  var link = $("a", li)
+  var content_id = link.attr("href").substring(1, 999)
+  var content = $(".bb-tabs-container #" + content_id + " .bb-tab-container")
 
   li.data("ajax-loaded", true)
   content.fadeOut(0, function() {
@@ -15,12 +15,12 @@ function loadAjaxTab(li) {
 $(document).ready(function() {
   //Loads the dynamic content of a tab when activated and sets the URL to the tab ID
   $("body").on("click", ".bb-tabs-container .nav li", function() {
-    li = $(this)
+    var li = $(this)
 
     if (li.data("ignore-next-history-push")) {
       li.data("ignore-next-history-push", null)
     } else if(li.data("specific-id-given")) {
-      urlb = new UrlBuilder(window.location.href)
+      var urlb = new UrlBuilder(window.location.href)
       urlb.queryParameters["bb_selected_tab"] = $(this).data("tab-container-id")
 
       window.history.pushState({active_tab: li.data("tab-container-id"), event: "bb-tab-change"}, null, urlb.pathWithQueryParameters())
@@ -34,16 +34,17 @@ $(document).ready(function() {
   // Changes the tab on 'back' and 'forward' events
   $(window).bind("popstate", function(e) {
     if (e.originalEvent.state && e.originalEvent.state.event == "bb-tab-change") {
-      selected_tab = e.originalEvent.state.active_tab
+      var selected_tab = e.originalEvent.state.active_tab
     } else {
-      urlb = new UrlBuilder(window.location.href)
-      selected_tab = urlb.queryParameters["bb_selected_tab"]
+      var urlb = new UrlBuilder(window.location.href)
+      var selected_tab = urlb.queryParameters["bb_selected_tab"]
     }
 
     if (!selected_tab) {
       selected_tab = $($(".bb-tabs-container .nav li").first()).data("tab-container-id")
     }
 
+    var li = null
     if (selected_tab) {
       li = $("li[data-tab-container-id='" + selected_tab + "']")
     }
