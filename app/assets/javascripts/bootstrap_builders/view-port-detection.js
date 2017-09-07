@@ -83,9 +83,8 @@ $(document).ready(function() {
       if (new_viewport != current_viewport) {
         current_viewport = new_viewport
 
-        for(number in viewport_callbacks) {
-          viewport_callback = viewport_callbacks[number]
-          viewport_callback.call()
+        for(var number in viewport_callbacks) {
+          viewport_callbacks[number].call()
         }
       }
     }, 200)
