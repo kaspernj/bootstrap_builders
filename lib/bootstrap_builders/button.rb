@@ -5,7 +5,7 @@ class BootstrapBuilders::Button
     args_parser = BootstrapBuilders::ArgumentsParser.new(
       arguments: args,
       short_true_arguments: [
-        :block, :confirm, :danger, :disabled, :info, :link, :primary, :responsive, :warning, :lg, :md, :mini, :sm, :xs
+        :block, :confirm, :danger, :disabled, :info, :link, :primary, :remote, :responsive, :warning, :lg, :md, :mini, :sm, :xs
       ]
     )
     args = args_parser.arguments
