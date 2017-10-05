@@ -79,7 +79,6 @@ private
   def classes
     unless @classes
       @classes = BootstrapBuilders::ClassAttributeHandler.new(class: ["btn", "btn-default", "dropdown-toggle"])
-      @classes.add(@class) if @class
       @classes.add("bb-btn-responsive") if @args[:responsive]
       add_default_as_default
       @classes.add("btn-block") if @args[:block]
