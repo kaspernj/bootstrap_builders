@@ -138,6 +138,14 @@ The classes "bb-table" and "table" are always added.
 <%= bb_btn "/url", "My label", :block, :lg, :confirm, :disabled %>
 ```
 
+### Button drop downs
+
+```erb
+<%= bb_btn_drop_down label: t("actions") do |drop_down| %>
+  <% drop_down.option [:new, :something], t(".new"), icon: "plus" %>
+<% end %>
+```
+
 ### Responsive mixins
 
 Use responsive mixins to only apply certain CSS rules on specific sizes, below or above.
