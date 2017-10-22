@@ -31,7 +31,7 @@ class BootstrapBuilders::AttributeRows
       elsif column_type(attribute) == :datetime || column_type(attribute) == :date
         str = @context.l(column_value(attribute), format: :long) if column_value(attribute)
       elsif column_type(attribute) == :money
-        str = @context.number_to_currency(column_value(attribute), unit: "")
+        str = column_value(attribute).try(:format)
       else
         str = column_value(attribute).to_s
       end
