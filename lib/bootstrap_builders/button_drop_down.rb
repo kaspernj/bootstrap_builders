@@ -4,7 +4,7 @@ class BootstrapBuilders::ButtonDropDown
   def initialize(*args)
     args_parser = BootstrapBuilders::ArgumentsParser.new(
       arguments: args,
-      short_true_arguments: [:block, :danger, :link, :info, :primary, :sm, :warning]
+      short_true_arguments: [:block, :danger, :link, :info, :primary, :sm, :warning, :xs]
     )
 
     args_parser.arguments_hash[:label] ||= args.shift if args.first.is_a?(String)
@@ -43,28 +43,29 @@ class BootstrapBuilders::ButtonDropDown
         toggle: "dropdown"
       }
     )
-    main_button.add_str(@args.fetch(:label))
-    main_button.add_ele(:span, classes: ["caret"])
+    main_button.add_ele(:i, classes: ["fa", "fa-fw", "fa-#{@args.fetch(:icon)}"]) if @args[:icon].present?
+    main_button.add_str(@args.fetch(:label)) if @args[:label].present?
+    main_button.add_ele(:span, classes: ["caret"]) if !@args.key?(:caret) || @args[:cart]
 
     ul = btn_group.add_ele(:ul, classes: ["dropdown-menu"])
 
     @buttons.each do |button|
       li = ul.add_ele(:li)
 
-      url = button.fetch(:url)
-      url = view_context.polymorphic_url(url) if url.is_a?(Array)
+      link_args = {class: BootstrapBuilders::ClassAttributeHandler.short(button[:class])}
+      link_args.deep_merge!(data: {confirm: I18n.t("are_you_sure")}) if button[:confirm]
+      link_args.deep_merge!(data: {method: button[:method]}) if button[:method].present?
+      link_args.deep_merge!(data: button[:data]) if button[:data]
 
-      a_href = li.add_ele(:a, attr: {href: url}, classes: BootstrapBuilders::ClassAttributeHandler.short(button[:class]))
-
-      a_href.data[:confirm] = I18n.t("are_you_sure") if button[:confirm]
-      a_href.data[:method] = button[:method] if button[:method].present?
-      a_href.data.merge!(button[:data]) if button[:data]
-
-      if button[:icon]
-        a_href.add_ele(:i, classes: ["fa", "fa-fw", "fa-#{button.fetch(:icon)}"])
+      link = view_context.link_to(button.fetch(:url), link_args) do
+        if button[:icon]
+          view_context.safe_join [view_context.content_tag(:i, nil, class: ["fa", "fa-fw", "fa-#{button.fetch(:icon)}"]), " ", button.fetch(:label)]
+        else
+          button.fetch(:label)
+        end
       end
 
-      a_href.add_str(button.fetch(:label))
+      li.add_html(link)
     end
 
     btn_group.html
