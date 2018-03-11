@@ -8,9 +8,7 @@ class BootstrapBuilders::FlashesController < ApplicationController
     end
   end
 
-  def show_flash
-  end
+  def show_flash; end
 
-  def show_flash_with_custom_class
-  end
+  def show_flash_with_custom_class; end
 end

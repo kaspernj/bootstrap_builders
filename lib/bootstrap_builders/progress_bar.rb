@@ -1,6 +1,6 @@
 class BootstrapBuilders::ProgressBar
   def self.with_parsed_args(*opts)
-    percent = opts.shift if opts.first.is_a?(Integer) || opts.first.is_a?(Float) || opts.first.is_a?(Fixnum)
+    percent = opts.shift if opts.first.is_a?(Integer) || opts.first.is_a?(Float) || opts.first.is_a?(Integer)
 
     args_parser = BootstrapBuilders::ArgumentsParser.new(
       arguments: opts,

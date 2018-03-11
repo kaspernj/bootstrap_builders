@@ -1,19 +1,48 @@
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
   Exclude:
+    - db/data_schema.rb
     - db/schema.rb
     - spec/dummy/db/schema.rb
 
-# https://github.com/AtomLinter/linter-rubocop/issues/2
-Style/FileName:
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/EmptyLines:
   Enabled: false
 
-Metrics/CyclomaticComplexity:
-  Max: 15
+Layout/EmptyLinesAroundArguments:
+  Enabled: false
 
-Metrics/PerceivedComplexity:
-  Max: 20
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+# Metrics/AbcSize:
+#   Max: 25
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 250
+
+# Metrics/CyclomaticComplexity:
+#   Max: 10
 
 Metrics/LineLength:
   Max: 160
@@ -21,22 +50,30 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 50
 
-Metrics/AbcSize:
-  Max: 50
-
-Metrics/ClassLength:
-  Max: 250
-
-Style/AccessModifierIndentation:
-  EnforcedStyle: outdent
+# .find_each is not the same as .each
+Rails/FindEach:
+  Enabled: false
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
+Style/ConditionalAssignment:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
-Style/EmptyLines:
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Will report offences for many places that are much more readable without using a guard clause
+Style/GuardClause:
+  Enabled: false
+
+Style/LambdaCall:
+  Enabled: false
+
+Style/RegexpLiteral:
   Enabled: false
 
 Style/StringLiterals:
@@ -51,19 +88,9 @@ Style/NilComparison:
 Style/SignalException:
   EnforcedStyle: only_raise
 
-Style/ConditionalAssignment:
+Style/SymbolArray:
   Enabled: false
-
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented
-
-Style/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
 
 Style/TrivialAccessors:
   ExactNameMatch: true
   Enabled: true
-
-# Disabled on purpose: https://github.com/bbatsov/rubocop/issues/1758
-Style/ClosingParenthesisIndentation:
-  Enabled: false

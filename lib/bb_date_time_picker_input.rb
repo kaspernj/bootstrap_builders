@@ -47,7 +47,7 @@ class BbDateTimePickerInput < SimpleForm::Inputs::Base
 
       html << template.text_field_tag("", val, class: classes, data: {date_format: "yyyy-mm-dd", provide: "datepicker"})
 
-      html.html_safe
+      html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
     content_tag

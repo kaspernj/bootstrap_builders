@@ -13,9 +13,7 @@ class BootstrapBuilders::Button
     is_an_active_record = BootstrapBuilders::IsAChecker.is_a?(args.first, "ActiveRecord::Base")
     is_a_baza_model = BootstrapBuilders::IsAChecker.is_a?(args.first, "BazaModels::Model")
 
-    if args.first.is_a?(Array) || args.first.is_a?(String) || is_an_active_record || is_a_baza_model
-      args_parser.arguments_hash[:url] ||= args.shift
-    end
+    args_parser.arguments_hash[:url] ||= args.shift if args.first.is_a?(Array) || args.first.is_a?(String) || is_an_active_record || is_a_baza_model
 
     args_parser.arguments_hash[:label] ||= args.shift if args.first.is_a?(String)
     args_parser.arguments_hash
@@ -83,11 +81,9 @@ class BootstrapBuilders::Button
       html = ""
       html << @context.content_tag(:i, nil, class: ["fa", "fa-#{@icon}"]) if @icon
 
-      if @label && !@mini
-        html << @context.content_tag(:span, " #{@label}", class: "bb-btn-label")
-      end
+      html << @context.content_tag(:span, " #{@label}", class: "bb-btn-label") if @label && !@mini
 
-      html.strip.html_safe
+      html.strip.html_safe # rubocop:disable Rails/OutputSafety
     end
   end
 
@@ -121,7 +117,7 @@ private
         can_object_from_url
       end
 
-      @can_object = false unless @can_object
+      @can_object ||= false
     end
 
     @can_object

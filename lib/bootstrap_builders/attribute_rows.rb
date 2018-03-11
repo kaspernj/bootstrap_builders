@@ -46,7 +46,7 @@ class BootstrapBuilders::AttributeRows
     end
 
     html = elements.join("\n")
-    html = html.html_safe if html.respond_to?(:html_safe)
+    html = html.html_safe if html.respond_to?(:html_safe) # rubocop:disable Rails/OutputSafety
     html
   end
 

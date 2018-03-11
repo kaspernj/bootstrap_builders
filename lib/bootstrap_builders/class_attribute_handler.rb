@@ -28,7 +28,7 @@ class BootstrapBuilders::ClassAttributeHandler
 private
 
   def convert_to_array(argument)
-    return unless argument.present?
+    return if argument.blank?
     return argument.split(/\s+/) if argument.is_a?(String)
     return argument if argument.is_a?(Array)
     return [] if args.fetch(:class).nil?
