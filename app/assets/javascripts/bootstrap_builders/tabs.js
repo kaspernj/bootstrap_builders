@@ -12,7 +12,8 @@ function loadAjaxTab(li) {
   })
 }
 
-$(document).ready(function() {
+// Makes sure the correct tab is loaded on page load
+function loadActiveAjaxTabOnPageLoad() {
   //Loads the dynamic content of a tab when activated and sets the URL to the tab ID
   $("body").on("click", ".bb-tabs-container .nav li", function() {
     var li = $(this)
@@ -22,7 +23,6 @@ $(document).ready(function() {
     } else if(li.data("specific-id-given")) {
       var urlb = new UrlBuilder(window.location.href)
       urlb.queryParameters["bb_selected_tab"] = $(this).data("tab-container-id")
-
       window.history.pushState({active_tab: li.data("tab-container-id"), event: "bb-tab-change"}, null, urlb.pathWithQueryParameters())
     }
 
@@ -31,6 +31,14 @@ $(document).ready(function() {
     }
   })
 
+  var active_tab = $(".bb-tabs-container .nav li.active[data-ajax-url]")
+
+  if (active_tab.length > 0) {
+    loadAjaxTab(active_tab)
+  }
+}
+
+$(document).ready(function() {
   // Changes the tab on 'back' and 'forward' events
   $(window).bind("popstate", function(e) {
     if (e.originalEvent.state && e.originalEvent.state.event == "bb-tab-change") {
@@ -55,11 +63,8 @@ $(document).ready(function() {
       $("a", li).click()
     }
   })
+})
 
-  // Makes sure the correct tab is loaded on page load
-  var active_tab = $(".bb-tabs-container .nav li.active[data-ajax-url]")
-
-  if (active_tab.length > 0) {
-    loadAjaxTab(active_tab)
-  }
+document.addEventListener("turbolinks:load", function() {
+  loadActiveAjaxTabOnPageLoad()
 })
