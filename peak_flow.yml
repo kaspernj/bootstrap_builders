@@ -1,22 +1,3 @@
-
-addons:
-  firefox: "28.0"
-services:
-  - selenium
-env:
-  global:
-    - DISPLAY=:99.0
-language: ruby
-cache: bundler
-archive: true
-rvm:
-  - ruby-2.1.2
-before_script:
-  - /etc/init.d/xvfb start
-after_script:
-  - /etc/init.d/xvfb stop
 script:
-  - bundle exec rspec
+  - xvfb-run bundle exec rspec
   - bundle exec rake best_practice_project:run
-notifications:
-   email: false
