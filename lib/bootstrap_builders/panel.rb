@@ -51,7 +51,7 @@ class BootstrapBuilders::Panel
     html = @panel.html
 
     if html.respond_to?(:html_safe)
-      html.html_safe
+      html.html_safe # rubocop:disable Rails/OutputSafety
     else
       html
     end
@@ -112,7 +112,7 @@ private
   end
 
   def collapse_id
-    @_collapse_id ||= "bb-collapse-#{SecureRandom.hex(4)}"
+    @collapse_id ||= "bb-collapse-#{SecureRandom.hex(4)}"
   end
 
   def container_classes

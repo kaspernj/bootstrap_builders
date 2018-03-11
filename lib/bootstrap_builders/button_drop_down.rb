@@ -20,9 +20,7 @@ class BootstrapBuilders::ButtonDropDown
 
     args = args_parser.arguments
 
-    if args.first.is_a?(Array) || args.first.is_a?(String) || is_an_active_record || is_a_baza_model
-      args_parser.arguments_hash[:url] ||= args.shift
-    end
+    args_parser.arguments_hash[:url] ||= args.shift if args.first.is_a?(Array) || args.first.is_a?(String) || is_an_active_record || is_a_baza_model
 
     args_parser.arguments_hash[:label] ||= args.shift if args.first.is_a?(String)
 

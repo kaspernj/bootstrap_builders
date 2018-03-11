@@ -14,7 +14,7 @@ group :development, :test do
   gem "best_practice_project", "0.0.9"
   gem "cancancan", "1.13.1"
   gem "devise", "3.5.6"
-  gem "rubocop", "0.40.0"
+  gem "rubocop", "0.53.0"
   gem "sass-rails", "5.0.6"
   gem "sqlite3", "1.3.11"
 end

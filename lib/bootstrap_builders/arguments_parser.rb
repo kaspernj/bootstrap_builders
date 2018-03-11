@@ -10,9 +10,7 @@ class BootstrapBuilders::ArgumentsParser
       @arguments_hash = {}
     end
 
-    if @arguments.last.is_a?(Hash)
-      @arguments_hash = @arguments_hash.merge(@arguments.pop)
-    end
+    @arguments_hash = @arguments_hash.merge(@arguments.pop) if @arguments.last.is_a?(Hash)
 
     @arguments << @arguments_hash
 
