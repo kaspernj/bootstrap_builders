@@ -25,7 +25,7 @@ class BootstrapBuilders::Flash
       end
     end
     @context.flash.clear
-    flash_messages.join("\n").html_safe
+    flash_messages.join("\n").html_safe # rubocop:disable Rails/OutputSafety
   end
 
 private

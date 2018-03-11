@@ -1,17 +1,13 @@
 class BootstrapBuilders::ButtonsController < ApplicationController
   before_action :set_user
 
-  def destroy_btn
-  end
+  def destroy_btn; end
 
-  def edit_btn
-  end
+  def edit_btn; end
 
-  def new_btn
-  end
+  def new_btn; end
 
-  def show_btn
-  end
+  def show_btn; end
 
 private
 
