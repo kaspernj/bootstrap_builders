@@ -18,16 +18,17 @@ describe BootstrapBuilders::Tabs do
   it "#set_default_first_active" do
     visit normal_tabs_bootstrap_builders_tabs_path
 
-    li1 = find("a[href='#tab1']").find(:xpath, "..")
+    link1 = find("a[href='#tab1']")
     container1 = find("#tab1")
 
-    li2 = find("a[href='#tab2']").find(:xpath, "..")
+    link2 = find("a[href='#tab2']")
     container2 = find("#tab2")
 
-    expect(li1[:class]).to eq "active"
+    expect(link1[:class]).to include "active"
+    expect(link1[:class]).to include "show"
     expect(container1[:class]).to eq "tab-pane active"
 
-    expect(li2[:class]).to eq nil
+    expect(link2[:class]).to eq "nav-link"
     expect(container2[:class]).to eq "tab-pane"
   end
 
