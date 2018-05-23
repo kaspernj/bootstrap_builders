@@ -26,9 +26,14 @@ class BootstrapBuilders::Tabs
     container.add_ele(:div, classes: ["clearfix"])
 
     @tabs.each do |tab|
-      li = ul.add_ele(:li, data: {specific_id_given: tab.specific_id_given?, tab_container_id: tab.container_id})
-      li.add_ele(:a, str: tab.label, attr: {href: "##{tab.container_id}"}, data: {toggle: "tab"})
-      li.classes << "active" if tab.active?
+      li = ul.add_ele(:li, attr: {class: "nav-item"}, data: {specific_id_given: tab.specific_id_given?, tab_container_id: tab.container_id})
+      link = li.add_ele(:a, str: tab.label, attr: {class: "nav-link", href: "##{tab.container_id}"}, data: {toggle: "tab"})
+
+      if tab.active?
+        link.classes << "show"
+        link.classes << "active"
+      end
+
       li.data[:ajax_url] = tab.ajax_url if tab.ajax_url.present?
     end
 
