@@ -116,7 +116,7 @@ private
   end
 
   def container_classes
-    classes = ["card", "bb-panel"]
+    classes = ["card", "bb-panel", "mb-1"]
 
     if @class.is_a?(String)
       classes += @class.split(/\s+/)
