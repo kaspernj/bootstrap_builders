@@ -60,12 +60,12 @@ class BootstrapBuilders::Panel
 private
 
   def add_heading
-    @heading = @panel.add_ele(:div, classes: ["panel-heading", "clearfix"])
+    @heading = @panel.add_ele(:div, classes: ["card-header", "clearfix"])
 
     if !@title || @title.to_s.strip.empty?
-      @heading.add_ele(:div, classes: ["panel-title", "pull-left"], str_html: "&nbsp;") if controls?
+      @heading.add_ele(:h4, classes: ["pull-left"], str_html: "&nbsp;") if controls?
     else
-      panel_title = @heading.add_ele(:div, classes: ["panel-title", "pull-left"])
+      panel_title = @heading.add_ele(:div, classes: ["pull-left"])
 
       if @collapsable
         panel_title.add_ele(:a, attr: {href: "##{collapse_id}"}, data: {toggle: "collapse"}, str: @title)
@@ -116,7 +116,7 @@ private
   end
 
   def container_classes
-    classes = ["panel", "panel-default", "bb-panel"]
+    classes = ["card", "bb-panel"]
 
     if @class.is_a?(String)
       classes += @class.split(/\s+/)
@@ -131,7 +131,7 @@ private
     if table?
       generate_body_table
     else
-      @generated_body = @context.content_tag(:div, nil, class: "panel-body", &@block)
+      @generated_body = @context.content_tag(:div, nil, class: "card-body", &@block)
     end
   end
 

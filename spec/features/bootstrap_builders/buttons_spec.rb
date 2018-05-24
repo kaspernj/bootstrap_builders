@@ -19,7 +19,7 @@ describe BootstrapBuilders::Button do
     visit arguments_bootstrap_builders_buttons_path
     button = find(".mini-btn")
 
-    expect(button[:class]).to eq "btn bb-btn-mini btn-xs mini-btn btn-default bb-btn"
+    expect(button[:class]).to eq "btn bb-btn-mini btn-xs mini-btn btn-outline-secondary bb-btn"
     expect(button.text).to eq ""
   end
 
@@ -29,7 +29,7 @@ describe BootstrapBuilders::Button do
     button = find(".bb-btn-destroy")
     expect(button[:href]).to eq "/test/destroy"
     expect(button.text).to eq "Delete"
-    expect(button[:class]).not_to include "btn-default"
+    expect(button[:class]).not_to include "btn-secondary"
 
     icon = find(".bb-btn-destroy i")
     expect(icon[:class]).to eq "fa fa-remove"

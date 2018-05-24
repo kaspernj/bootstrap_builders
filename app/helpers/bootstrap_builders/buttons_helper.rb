@@ -37,7 +37,7 @@ module BootstrapBuilders::ButtonsHelper
     args[:data][:confirm] ||= t("are_you_sure")
 
     button = BootstrapBuilders::Button.new(args.merge(icon: "remove", context: self, can_type: :destroy, method: :delete))
-    button.classes.remove(["btn-default"])
+    button.classes.remove(["btn-outline-secondary"])
     button.classes.add(["btn-danger", "bb-btn", "bb-btn-destroy"])
     button.classes.add("bb-btn-destroy-#{button.can_model_class.name.tableize.singularize}") if button.can_model_class
     button.classes.add("bb-btn-destroy-#{button.can_model_class.name.tableize.singularize}-#{button.can_model.id}") if button.can_model

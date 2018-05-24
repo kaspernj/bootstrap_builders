@@ -10,10 +10,10 @@ describe BootstrapBuilders::Panel do
     table = find(".bb-panel")
     expect(table[:style]).to eq "width: 300;"
 
-    title = find(".panel-title")
+    title = find(".card-header .pull-left")
     expect(title.text).to eq "Test title"
 
-    panel_body = find(".panel-body")
+    panel_body = find(".card-body")
     expect(panel_body.text).to eq "Test"
 
     expect(page).to have_selector ".controls-argument-button"
@@ -23,7 +23,7 @@ describe BootstrapBuilders::Panel do
   it "generates a table" do
     visit panel_with_table_bootstrap_builders_panels_path
 
-    title = find(".bb-panel .panel-title")
+    title = find(".bb-panel .card-header")
     expect(title.text).to eq "Test title"
 
     panel_table = find(".table-responsive table.table")
@@ -37,7 +37,7 @@ describe BootstrapBuilders::Panel do
   it "allows custom classes for tables" do
     visit panel_with_table_and_custom_classes_bootstrap_builders_panels_path
 
-    title = find(".bb-panel .panel-title")
+    title = find(".bb-panel .card-header")
     expect(title.text).to eq "Test title"
 
     panel_table = find(".table-responsive table.table")
@@ -52,7 +52,7 @@ describe BootstrapBuilders::Panel do
 
     expect(page).to have_http_status :success
     expect(page).to have_selector ".bb-panel"
-    expect(page).to_not have_selector ".panel-heading"
+    expect(page).to_not have_selector ".card-header"
   end
 
   it "generates collapse elements" do
