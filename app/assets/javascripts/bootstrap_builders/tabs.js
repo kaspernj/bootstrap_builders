@@ -31,11 +31,10 @@ function loadActiveAjaxTabOnPageLoad() {
     }
   })
 
-  var active_tab = $(".bb-tabs-container .nav li.active[data-ajax-url]")
+  var activeTabLink = $(".bb-tabs-container .nav li[data-ajax-url] a.active")
 
-  if (active_tab.length > 0) {
-    loadAjaxTab(active_tab)
-  }
+  if (activeTabLink.length > 0)
+    loadAjaxTab(activeTabLink.parent())
 }
 
 $(document).ready(function() {
@@ -53,14 +52,15 @@ $(document).ready(function() {
     }
 
     var li = null
+    var link = null
     if (selected_tab) {
       li = $("li[data-tab-container-id='" + selected_tab + "']")
+      link = $("a", li)
     }
 
-    if (li && !li.hasClass("active")) {
-      console.log("Click on LI")
+    if (link && !link.hasClass("active")) {
       li.data("ignore-next-history-push", true)
-      $("a", li).click()
+      link.click()
     }
   })
 })

@@ -72,12 +72,12 @@ class BootstrapBuilders::ButtonDropDown
 private
 
   def add_default_as_default
-    @classes.add("btn-default") if !@args[:danger] && !@args[:info] && !@args[:primary] && !@args[:warning]
+    @classes.add("btn-secondary") if !@args[:danger] && !@args[:info] && !@args[:primary] && !@args[:warning]
   end
 
   def classes
     unless @classes
-      @classes = BootstrapBuilders::ClassAttributeHandler.new(class: ["btn", "btn-default", "dropdown-toggle"])
+      @classes = BootstrapBuilders::ClassAttributeHandler.new(class: ["btn", "btn-secondary", "dropdown-toggle"])
       @classes.add("bb-btn-responsive") if @args[:responsive]
       add_default_as_default
       @classes.add("btn-block") if @args[:block]
