@@ -1,3 +1,3 @@
 module BootstrapBuilders
-  VERSION = "0.0.62".freeze
+  VERSION = "1.0.0".freeze
 end
