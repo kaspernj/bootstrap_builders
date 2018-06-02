@@ -63,7 +63,7 @@ private
     @heading = @panel.add_ele(:div, classes: ["card-header", "clearfix"])
 
     if !@title || @title.to_s.strip.empty?
-      @heading.add_ele(:h4, classes: ["pull-left"], str_html: "&nbsp;") if controls?
+      @heading.add_ele(:div, classes: ["pull-left"], str_html: "&nbsp;") if controls?
     else
       panel_title = @heading.add_ele(:div, classes: ["pull-left"])
 
