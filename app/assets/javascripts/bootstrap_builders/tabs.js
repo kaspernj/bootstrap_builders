@@ -1,4 +1,7 @@
 function loadAjaxTab(li) {
+  if (li.data("ajax-loaded"))
+    return
+
   var link = $("a", li)
   var content_id = link.attr("href").substring(1, 999)
   var content = $(".bb-tabs-container #" + content_id + " .bb-tab-container")
@@ -7,14 +10,14 @@ function loadAjaxTab(li) {
   content.fadeOut(0, function() {
     $.get(li.data("ajax-url"), function(data) {
       content.html(data)
-      content.fadeIn("fast")
+      content.show()
     })
   })
 }
 
 // Makes sure the correct tab is loaded on page load
 function loadActiveAjaxTabOnPageLoad() {
-  //Loads the dynamic content of a tab when activated and sets the URL to the tab ID
+  // Loads the dynamic content of a tab when activated and sets the URL to the tab ID
   $("body").on("click", ".bb-tabs-container .nav li", function() {
     var li = $(this)
 
@@ -23,12 +26,11 @@ function loadActiveAjaxTabOnPageLoad() {
     } else if(li.data("specific-id-given")) {
       var urlb = new UrlBuilder(window.location.href)
       urlb.queryParameters["bb_selected_tab"] = $(this).data("tab-container-id")
-      window.history.pushState({active_tab: li.data("tab-container-id"), event: "bb-tab-change"}, null, urlb.pathWithQueryParameters())
+      window.history.pushState({active_tab: li.data("tab-container-id"), event: "bb-tab-change", turbolinks: {}}, null, urlb.pathWithQueryParameters())
     }
 
-    if (li.data("ajax-url") && !li.data("ajax-loaded")) {
+    if (li.data("ajax-url"))
       loadAjaxTab(li)
-    }
   })
 
   var activeTabLink = $(".bb-tabs-container .nav li[data-ajax-url] a.active")
@@ -47,9 +49,8 @@ $(document).ready(function() {
       var selected_tab = urlb.queryParameters["bb_selected_tab"]
     }
 
-    if (!selected_tab) {
+    if (!selected_tab)
       selected_tab = $($(".bb-tabs-container .nav li").first()).data("tab-container-id")
-    }
 
     var li = null
     var link = null
@@ -58,7 +59,7 @@ $(document).ready(function() {
       link = $("a", li)
     }
 
-    if (link && !link.hasClass("active")) {
+    if (link && link.length > 0 && !link.hasClass("active")) {
       li.data("ignore-next-history-push", true)
       link.click()
     }
