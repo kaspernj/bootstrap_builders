@@ -100,7 +100,7 @@ class BootstrapBuilders::Button
 private
 
   def add_default_as_default
-    @classes.add("btn-outline-secondary") if !@args[:danger] && !@args[:info] && !@args[:primary] && !@args[:warning]
+    @classes.add("btn-default") if !@args[:danger] && !@args[:info] && !@args[:primary] && !@args[:warning]
   end
 
   def can?
