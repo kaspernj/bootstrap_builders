@@ -39,6 +39,8 @@ function loadActiveAjaxTabOnPageLoad() {
 }
 
 $(document).ready(function() {
+  loadActiveAjaxTabOnPageLoad()
+
   // Changes the tab on 'back' and 'forward' events
   $(window).bind("popstate", function(e) {
     if (e.originalEvent.state && e.originalEvent.state.event == "bb-tab-change") {
