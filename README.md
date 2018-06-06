@@ -21,9 +21,15 @@ Then add to your `application.js`:
 //= require bootstrap_builders
 ```
 
-Then add to your `application.css`:
+Then add to your `application.scss`:
+```scss´
+@import "bootstrap_builders";
+```
+
+Or if you haven't loaded Bootstrap through SCSS:
 ```scss
-//= require bootstrap_builders
+@import "bootstrap_builders/bootstrap-variables";
+@import "bootstrap_builders";
 ```
 
 ## Usage
