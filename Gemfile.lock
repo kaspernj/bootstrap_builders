@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bootstrap_builders (1.0.3)
+    bootstrap_builders (1.0.4)
       html_gen (>= 0.0.16)
       rails (>= 4.0.0)
 
