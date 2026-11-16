@@ -1,3 +1,10 @@
-script:
-  - xvfb-run bundle exec rspec
-  - bundle exec rake best_practice_project:run
+builds:
+  build_1:
+    paths:
+      - "**/*"
+      - "!README.md"
+      - "!MIT-LICENSE"
+      - "!spec/dummy/README.rdoc"
+    script:
+      - xvfb-run bundle exec rspec
+      - bundle exec rake best_practice_project:run
